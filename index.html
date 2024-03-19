@@ -1,17 +1,62 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>dont click the image</title>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Image and Text Effects</title>
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        flex-direction: column;
+    }
+    @keyframes rainbow {
+        0% { filter: hue-rotate(0deg); }
+        100% { filter: hue-rotate(360deg); }
+    }
+    @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+    #dynamicText {
+        font-size: 20px;
+        transition: font-size 0.5s ease;
+    }
+</style>
+</head>
+<body>
 
-        <meta property="og:image" content="https://i.imgur.com/CZhBPSj.png">
-        <meta property="og:type" content="video.other">
-        <meta property="og:video:url" content="https://cdn.discordapp.com/attachments/1195157904798523503/1197002874090180608/jE2u8oy.mov">
-        <meta property="og:video:height" content="1200">
-        <meta property="og:video:width" content="1">
-	<meta property="og:title" content="𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫">
-	<meta property="og:description" content="𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫𒐫">
-    </head>
-    <body>
-        <img title="dont click this (do it)" onclick="window.location.href = ('https://roblox.com/')" style="cursor: pointer" src="https://cdn.discordapp.com/attachments/1195157904798523503/1197003060350824518/9zawLLS.png">
-    </body>
+<img id="rainbowImage" src="https://i.imgur.com/T1884Rj.png" alt="Rainbow Image" style="animation: rainbow 2s infinite linear;">
+
+<script>
+    setTimeout(() => {
+        const image = document.getElementById('rainbowImage');
+        image.style.animation = 'none'; 
+
+
+        const dynamicText = document.createElement('div');
+        dynamicText.id = 'dynamicText';
+        dynamicText.innerText = 'popbottoms door';
+        document.body.appendChild(dynamicText);
+
+        // Spin the text.
+        dynamicText.style.animation = 'spin 5s linear';
+        setTimeout(() => {
+            dynamicText.style.animation = 'none'; 
+
+
+            dynamicText.style.fontSize = '40px';
+            setTimeout(() => {
+                dynamicText.style.fontSize = '20px';
+                setTimeout(() => {
+                    dynamicText.remove(); 
+                }, 2000); 
+            }, 1000); 
+        }, 5000); 
+    }, 10000); 
+</script>
+
+</body>
 </html>
