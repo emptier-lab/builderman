@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Image and Text Effects</title>
+<title>let him cook.</title>
 <style>
     body {
         display: flex;
@@ -11,6 +11,7 @@
         align-items: center;
         height: 100vh;
         flex-direction: column;
+        font-family: Arial, sans-serif;
     }
     @keyframes rainbow {
         0% { filter: hue-rotate(0deg); }
@@ -24,12 +25,31 @@
         font-size: 20px;
         transition: font-size 0.5s ease;
     }
+    .embed {
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 10px;
+        margin: 20px 0;
+        background-color: #f9f9f9;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        width: 300px;
+        font-size: 14px;
+    }
+    .embed-header {
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
 </style>
 </head>
 <body>
 
 <img id="rainbowImage" src="https://i.imgur.com/T1884Rj.png" alt="Rainbow Image" style="animation: rainbow 1s infinite linear;">
-
+    
+<div class="embed">
+    <div class="embed-header">popbottoms — 10 Years ago at 12:27 PM said:</div>
+    hello im pop and i hit myself with books
+</div>
+    
 <script>
     setTimeout(() => {
         const image = document.getElementById('rainbowImage');
