@@ -44,38 +44,40 @@
 <body>
 
 <img id="rainbowImage" src="https://i.imgur.com/T1884Rj.png" alt="Rainbow Image" style="animation: rainbow 1s infinite linear;">
-    
+    <img id="image" src="YOUR_IMAGE_URL_HERE" alt="Flashing Image">
 <div class="embed">
     <div class="embed-header">popbottoms — 10 Years ago at 12:27 PM said:</div>
     hello im pop and i hit myself with books
 </div>
     
+
 <script>
     setTimeout(() => {
-        const image = document.getElementById('rainbowImage');
-        image.style.animation = 'none'; 
+        const imaged = document.getElementById('rainbowImage');
+        imaged.style.animation = 'none'; 
 
-
-        const dynamicText = document.createElement('div');
-        dynamicText.id = 'dynamicText';
-        dynamicText.innerText = 'popbottoms door';
-        document.body.appendChild(dynamicText);
-
-        // Spin the text.
-        dynamicText.style.animation = 'spin 5s linear';
+        
+        document.getElementById('image').style.animation = 'none';
+        const text = document.getElementById('text');
+        text.style.display = 'block';
         setTimeout(() => {
-            dynamicText.style.animation = 'none'; 
-
-
-            dynamicText.style.fontSize = '40px';
+            text.style.animation = 'none';
+            text.style.transform = 'scale(0)';
             setTimeout(() => {
-                dynamicText.style.fontSize = '20px';
+                text.style.display = 'none';
+                const image = document.getElementById('image');
+                image.style.display = 'block';
+                image.style.animation = 'spin 5s linear, scale 5s linear';
                 setTimeout(() => {
-                    dynamicText.remove(); 
-                }, 2000); 
-            }, 1000); 
-        }, 5000); 
-    }, 10000); 
+                    image.style.animation = 'none';
+                    image.style.transform = 'scale(0)';
+                    setTimeout(() => {
+                        image.style.display = 'none';
+                    }, 10000); // Hide image after final animation
+                }, 5000); // Time for image spin and scale
+            }, 1000); // Time to make text small and disappear
+        }, 5000); // Time for text spin and scale
+    }, 10000); // Initial delay before showing text
 </script>
 
 </body>
