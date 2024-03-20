@@ -13,6 +13,7 @@
         flex-direction: column;
         font-family: Arial, sans-serif;
     }
+
     @keyframes rainbow {
         0% { filter: hue-rotate(0deg); }
         100% { filter: hue-rotate(360deg); }
@@ -25,12 +26,7 @@
         font-size: 20px;
         transition: font-size 0.5s ease;
     }
-    #image {
-        width: 50px; /* Adjusted size to make it smaller */
-        height: auto;
-        float: left; /* Align the image to the left */
-        animation: rainbowFlash 2s infinite linear;
-    }
+   
     .embed {
         border: 1px solid #ccc;
         border-radius: 8px;
@@ -50,7 +46,6 @@
 <body>
 
 <img id="rainbowImage" src="https://i.imgur.com/T1884Rj.png" alt="Rainbow Image" style="animation: rainbow 1s infinite linear;">
-    <img id="image" src="https://i.imgur.com/Iys5lkd.png" alt="Flashing Image">
 <div class="embed">
     <div class="embed-header">popbottoms — 10 Years ago at 12:27 PM said:</div>
     hello im pop and i hit myself with books
