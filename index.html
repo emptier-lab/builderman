@@ -1,85 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>let him cook.</title>
-<style>
-    body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        flex-direction: column;
-        font-family: Arial, sans-serif;
-    }
-
-    @keyframes rainbow {
-        0% { filter: hue-rotate(0deg); }
-        100% { filter: hue-rotate(360deg); }
-    }
-    @keyframes spin {
-        from { transform: rotate(0deg); }
-        to { transform: rotate(360deg); }
-    }
-    #dynamicText {
-        font-size: 20px;
-        transition: font-size 0.5s ease;
-    }
-   
-    .embed {
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        padding: 10px;
-        margin: 20px 0;
-        background-color: #f9f9f9;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        width: 300px;
-        font-size: 14px;
-    }
-    .embed-header {
-        font-weight: bold;
-        margin-bottom: 5px;
-    }
-</style>
-</head>
-<body>
-
-<img id="rainbowImage" src="https://i.imgur.com/T1884Rj.png" alt="Rainbow Image" style="animation: rainbow 1s infinite linear;">
-<div class="embed">
-    <div class="embed-header">popbottoms — 10 Years ago at 12:27 PM said:</div>
-    hello im pop and i hit myself with books
-</div>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
 
-<script>
-    setTimeout(() => {
-        const imaged = document.getElementById('rainbowImage');
-        imaged.style.animation = 'none'; 
+    <meta property="og:title" content="|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||">
+    <meta property="og:description" content="not malware.com">
+    <script src="https://cdn.jsdelivr.net/npm/jquery"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery.terminal/js/jquery.terminal.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery.terminal/css/jquery.terminal.min.css"/>
+</head>
+<body>
+    <script>
+        $(function() {
+            // Initialize terminal
+            $('body').terminal({
 
-        
-        document.getElementById('image').style.animation = 'none';
-        const text = document.getElementById('text');
-        text.style.display = 'block';
-        setTimeout(() => {
-            text.style.animation = 'none';
-            text.style.transform = 'scale(0)';
-            setTimeout(() => {
-                text.style.display = 'none';
-                const image = document.getElementById('image');
-                image.style.display = 'block';
-                image.style.animation = 'spin 5s linear, scale 5s linear';
-                setTimeout(() => {
-                    image.style.animation = 'none';
-                    image.style.transform = 'scale(0)';
-                    setTimeout(() => {
-                        image.style.display = 'none';
-                    }, 10000); 
-                }, 5000); 
-            }, 1000); 
-        }, 5000); 
-    }, 10000);
-</script>
+                help: function() {
+                    this.echo('Available commands:\n- help: Displays this list of commands\n- popbottoms: secret... \n- download: free spyware joking lol!1!1! \n- discord: invite to empty.lua');
+                },
+                
 
+                discord: function() {
+                    window.open('https://discord.gg/w8AgTWxxrP', '_self');
+                },
+                
+  
+                download: function() {
+                    this.echo('Click here to download the latest malware: https://whatismyipaddress.com/');
+                }
+            }, {
+                greetings: 'empty console get it lol (run help to get stable)'
+            });
+        });
+    </script>
 </body>
 </html>
