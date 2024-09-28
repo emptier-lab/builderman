@@ -1,51 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Logs</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #121212;
-            color: #e0e0e0;
-            padding: 20px;
-        }
-        .game {
-            background-color: #1e1e1e;
-            margin: 10px 0;
-            padding: 10px;
-            border-radius: 5px;
-        }
-    </style>
+    
+
+    <meta property="og:title" content="empty's playground">
+    <meta property="og:description" content="not malware.com">
+    <script src="https://cdn.jsdelivr.net/npm/jquery"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery.terminal/js/jquery.terminal.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery.terminal/css/jquery.terminal.min.css"/>
 </head>
 <body>
-    <h1>Game Logs</h1>
-    <div id="logContainer"></div>
-
     <script>
-        async function fetchLogs() {
-            const response = await fetch('https://dialer.life/Developer/gameLogs.json');
-            const logs = await response.json();
-            displayLogs(logs);
-        }
+        $(function() {
+            // Initialize terminal
+            $('body').terminal({
 
-        function displayLogs(logs) {
-            const logContainer = document.getElementById('logContainer');
-            logContainer.innerHTML = '';
-            logs.forEach(log => {
-                const logEntry = document.createElement('div');
-                logEntry.className = 'game';
-                logEntry.innerHTML = `
-                    <h2>${log.name}</h2>
-                    <p>Players: ${log.playerCount}</p>
-                    <img src="${log.thumbnailUrl}" alt="${log.name}" style="width: 100px;">
-                `;
-                logContainer.appendChild(logEntry);
+                help: function() {
+                    this.echo('Available commands:\n- help: Displays this list of commands\n- popbottoms: secret... \n- download: free spyware joking lol!1!1! \n- discord: invite to empty.lua');
+                },
+                
+
+                discord: function() {
+                    window.open('https://discord.gg/w8AgTWxxrP', '_self');
+                },
+                
+                popbottoms: function() {
+                    window.open('https://ip-grabber.com/', '_self');
+                },
+  
+                download: function() {
+                    this.echo('Click here to download the latest malware: https://whatismyipaddress.com/');
+                }
+            }, {
+                greetings: 'empty console get it lol (run help to get stable)'
             });
-        }
-
-        fetchLogs();
+        });
     </script>
 </body>
 </html>
