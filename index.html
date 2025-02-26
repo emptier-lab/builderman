@@ -106,7 +106,7 @@
             box-shadow: var(--glow);
             text-decoration: none;
             display: inline-block;
-            margin-top: 1rem;
+            margin: 1rem 10px 0;
             opacity: 0;
             animation: fadeIn 1s forwards 1s, pulse 2s infinite;
         }
@@ -139,6 +139,46 @@
             }
         }
         
+        .nav-container {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            background-color: rgba(35, 39, 42, 0.95);
+            z-index: 100;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(5px);
+        }
+        
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .tab {
+            padding: 12px 25px;
+            background: rgba(35, 39, 42, 0.5);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(114, 137, 218, 0.2);
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .tab.active {
+            background: var(--primary);
+            box-shadow: var(--glow);
+        }
+        
+        .tab:hover:not(.active) {
+            background: rgba(114, 137, 218, 0.1);
+        }
+        
         .features {
             padding: 80px 20px;
             background: var(--secondary);
@@ -155,9 +195,10 @@
         }
         
         .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
             max-width: 1200px;
             margin: 0 auto;
         }
@@ -171,6 +212,9 @@
             border: 1px solid rgba(114, 137, 218, 0.2);
             position: relative;
             overflow: hidden;
+            flex: 1;
+            min-width: 270px;
+            max-width: 300px;
         }
         
         .feature-card:hover {
@@ -229,8 +273,9 @@
         }
         
         .key-features-list {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             max-width: 1200px;
             margin: 0 auto;
             gap: 20px;
@@ -246,6 +291,9 @@
             transition: all 0.3s ease;
             border: 1px solid rgba(114, 137, 218, 0.2);
             justify-content: center;
+            flex: 1;
+            min-width: 250px;
+            max-width: 300px;
         }
         
         .key-feature:hover {
@@ -349,29 +397,15 @@
             color: #b9bbbe;
         }
         
-        .tabs {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 40px;
-            gap: 10px;
-        }
-        
-        .tab {
-            padding: 12px 25px;
-            background: rgba(35, 39, 42, 0.5);
-            border-radius: 30px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(114, 137, 218, 0.2);
-        }
-        
-        .tab.active {
-            background: var(--primary);
-            box-shadow: var(--glow);
-        }
-        
-        .tab:hover:not(.active) {
-            background: rgba(114, 137, 218, 0.1);
+        @media (max-width: 1200px) {
+            .features-grid {
+                justify-content: center;
+            }
+            
+            .feature-card {
+                flex: 0 0 calc(50% - 20px);
+                max-width: 350px;
+            }
         }
         
         @media (max-width: 768px) {
@@ -386,14 +420,24 @@
             .section-title {
                 font-size: 2rem;
             }
-
-            .key-features-list {
-                grid-template-columns: 1fr;
+            
+            .feature-card {
+                flex: 0 0 100%;
+                max-width: 400px;
+            }
+            
+            .key-feature {
+                flex: 0 0 100%;
+                max-width: 400px;
             }
             
             .tabs {
-                flex-direction: column;
-                align-items: center;
+                flex-wrap: wrap;
+            }
+            
+            .tab {
+                flex: 1 0 auto;
+                min-width: 150px;
             }
         }
     </style>
@@ -411,9 +455,11 @@
         </div>
     </section>
     
-    <div class="tabs" id="nav-tabs">
-        <div class="tab active" data-target="features">Features</div>
-        <div class="tab" data-target="how-to-add">Add to Server</div>
+    <div class="nav-container">
+        <div class="tabs" id="nav-tabs">
+            <div class="tab active" data-target="features">Features</div>
+            <div class="tab" data-target="how-to-add">Add to Server</div>
+        </div>
     </div>
     
     <section class="features" id="features">
@@ -552,10 +598,6 @@
 
         function setup() {
             const tabs = document.querySelectorAll('.tab');
-            const sections = {
-                'features': document.getElementById('features'),
-                'how-to-add': document.getElementById('how-to-add')
-            };
             
             tabs.forEach(tab => {
                 tab.addEventListener('click', () => {
@@ -563,46 +605,71 @@
                     tab.classList.add('active');
 
                     const target = tab.getAttribute('data-target');
-                    Object.keys(sections).forEach(key => {
-                        if (key === target) {
-                            sections[key].style.display = 'block';
-                            sections[key].scrollIntoView({ behavior: 'smooth' });
-                        } else {
-                            // sections[key].style.display = 'none'; not needed really
-                        }
-                    });
+                    const targetElement = document.getElementById(target);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 70,
+                            behavior: 'smooth'
+                        });
+                    }
                 });
             });
         }
 
-        function handlescrolling() {
+        function scrollanim() {
             const elements = document.querySelectorAll('.feature-card, .key-feature, .contact-info');
             
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
             elements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(30px)';
+                element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(element);
+            });
+        }
+        
+        function navscroll() {
+            const navContainer = document.querySelector('.nav-container');
+            let lastScroll = 0;
+            
+            window.addEventListener('scroll', () => {
+                const currentScroll = window.pageYOffset;
                 
-                if (elementTop < windowHeight - 100) {
-                    element.style.opacity = '1';
-                    element.style.transform = 'translateY(0)';
+                if (currentScroll <= 0) {
+                    navContainer.style.transform = 'translateY(0)';
+                    navContainer.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.2)';
+                    return;
                 }
+                
+                if (currentScroll > lastScroll && currentScroll > 200) {
+                    navContainer.style.transform = 'translateY(-100%)';
+                } else {
+                    navContainer.style.transform = 'translateY(0)';
+                    navContainer.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.2)';
+                }
+                
+                lastScroll = currentScroll;
             });
         }
         
         window.addEventListener('DOMContentLoaded', () => {
             create();
             setup();
-
-            const cards = document.querySelectorAll('.feature-card, .key-feature, .contact-info');
-            cards.forEach(card => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(30px)';
-                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-            });
-            
-
-            window.addEventListener('scroll', handlescrolling);
-            handlescrolling(); 
+            scrollanim();
+            navscroll();
         });
     </script>
 </body>
