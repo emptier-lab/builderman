@@ -229,9 +229,8 @@
         }
         
         .key-features-list {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
             max-width: 1200px;
             margin: 0 auto;
             gap: 20px;
@@ -246,6 +245,7 @@
             gap: 10px;
             transition: all 0.3s ease;
             border: 1px solid rgba(114, 137, 218, 0.2);
+            justify-content: center;
         }
         
         .key-feature:hover {
@@ -259,8 +259,53 @@
             font-size: 1.2rem;
         }
         
-        footer {
+        .how-to-add {
             background: var(--secondary);
+            padding: 80px 20px;
+            text-align: center;
+        }
+        
+        .contact-info {
+            background: rgba(35, 39, 42, 0.8);
+            border-radius: 10px;
+            padding: 30px;
+            max-width: 800px;
+            margin: 0 auto;
+            border: 1px solid rgba(114, 137, 218, 0.3);
+            box-shadow: var(--glow);
+        }
+        
+        .contact-highlight {
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .contact-steps {
+            text-align: left;
+            margin-top: 20px;
+            display: inline-block;
+        }
+        
+        .contact-steps li {
+            margin-bottom: 15px;
+            list-style-type: none;
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .contact-steps li:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 10px;
+            height: 10px;
+            background-color: var(--primary);
+            border-radius: 50%;
+        }
+        
+        footer {
+            background: var(--dark);
             padding: 30px 20px;
             text-align: center;
             border-top: 1px solid rgba(114, 137, 218, 0.2);
@@ -304,6 +349,31 @@
             color: #b9bbbe;
         }
         
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            gap: 10px;
+        }
+        
+        .tab {
+            padding: 12px 25px;
+            background: rgba(35, 39, 42, 0.5);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(114, 137, 218, 0.2);
+        }
+        
+        .tab.active {
+            background: var(--primary);
+            box-shadow: var(--glow);
+        }
+        
+        .tab:hover:not(.active) {
+            background: rgba(114, 137, 218, 0.1);
+        }
+        
         @media (max-width: 768px) {
             .logo {
                 font-size: 3rem;
@@ -316,6 +386,15 @@
             .section-title {
                 font-size: 2rem;
             }
+            
+            .key-features-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .tabs {
+                flex-direction: column;
+                align-items: center;
+            }
         }
     </style>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
@@ -327,10 +406,15 @@
         <div class="hero-content">
             <h1 class="logo">Incorp</h1>
             <p class="tagline">The Ultimate Economy & Entertainment Bot for Discord</p>
-            <a href="#" class="cta-button">Add to Discord</a>
+            <a href="#how-to-add" class="cta-button">Add to Discord</a>
             <a href="#features" class="cta-button">Explore Features</a>
         </div>
     </section>
+    
+    <div class="tabs" id="nav-tabs">
+        <div class="tab active" data-target="features">Features</div>
+        <div class="tab" data-target="how-to-add">Add to Server</div>
+    </div>
     
     <section class="features" id="features">
         <h2 class="section-title">What Makes Incorp Special</h2>
@@ -357,6 +441,14 @@
                 </div>
                 <h3 class="feature-title">Power-Ups & Bonuses</h3>
                 <p class="feature-description">Maximize your earnings with our advanced bonus system! Stack Rebirth bonuses with Potion effects and Upgrades for insane multipliers. Keep your streak for extra rewards!</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-server"></i>
+                </div>
+                <h3 class="feature-title">Fully Self Ran</h3>
+                <p class="feature-description">Incorp can be added to any Discord server! Contact the developer directly to get this powerful bot added to your community and start enjoying all of its features.</p>
             </div>
         </div>
     </section>
@@ -394,6 +486,30 @@
         </div>
     </section>
     
+    <section class="how-to-add" id="how-to-add">
+        <h2 class="section-title">Add Incorp to Your Server</h2>
+        <div class="contact-info">
+            <h3>Getting Incorp is Simple!</h3>
+            <p class="feature-description" style="margin: 20px 0;">
+                Incorp can be added to any Discord server. To get started, just follow these steps:
+            </p>
+            
+            <ul class="contact-steps">
+                <li>Contact <span class="contact-highlight">empty?</span> on Discord</li>
+                <li>Send your server invite link</li>
+                <li>The bot will be added to your server promptly</li>
+                <li>Start enjoying all the economic and entertainment features!</li>
+            </ul>
+            
+            <div style="margin-top: 30px;">
+                <p class="feature-description">
+                    <i class="fas fa-info-circle" style="color: var(--primary); margin-right: 8px;"></i>
+                    Just contact <span class="contact-highlight">empty?</span> on Discord and send your server link to get Incorp added!
+                </p>
+            </div>
+        </div>
+    </section>
+    
     <footer>
         <div class="footer-content">
             <div class="footer-logo">Incorp</div>
@@ -407,8 +523,7 @@
     </footer>
     
     <script>
-        // Create floating particles
-        function createParticles() {
+        function create() {
             const particles = document.getElementById('particles');
             const particleCount = 30;
             const colors = ['#7289da', '#5865f2', '#ff73fa'];
@@ -416,31 +531,52 @@
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
-                
-                // Random properties
+
                 const size = Math.random() * 10 + 5;
                 const color = colors[Math.floor(Math.random() * colors.length)];
-                
-                // Position
+
                 const left = Math.random() * 100;
                 const top = Math.random() * 100;
-                
-                // Styling
+
                 particle.style.width = size + 'px';
                 particle.style.height = size + 'px';
                 particle.style.backgroundColor = color;
                 particle.style.left = left + '%';
                 particle.style.top = top + '%';
-                
-                // Animation delay
+
                 particle.style.animationDelay = Math.random() * 5 + 's';
                 
                 particles.appendChild(particle);
             }
         }
 
-        function handleScroll() {
-            const elements = document.querySelectorAll('.feature-card, .key-feature');
+        function setup() {
+            const tabs = document.querySelectorAll('.tab');
+            const sections = {
+                'features': document.getElementById('features'),
+                'how-to-add': document.getElementById('how-to-add')
+            };
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+
+                    const target = tab.getAttribute('data-target');
+                    Object.keys(sections).forEach(key => {
+                        if (key === target) {
+                            sections[key].style.display = 'block';
+                            sections[key].scrollIntoView({ behavior: 'smooth' });
+                        } else {
+                            // sections[key].style.display = 'none'; not needed really
+                        }
+                    });
+                });
+            });
+        }
+
+        function handlescrolling() {
+            const elements = document.querySelectorAll('.feature-card, .key-feature, .contact-info');
             
             elements.forEach(element => {
                 const elementTop = element.getBoundingClientRect().top;
@@ -452,20 +588,21 @@
                 }
             });
         }
-
+        
         window.addEventListener('DOMContentLoaded', () => {
-            createParticles();
-            
-            // Set initial opacity
-            const cards = document.querySelectorAll('.feature-card, .key-feature');
+            create();
+            setup();
+
+            const cards = document.querySelectorAll('.feature-card, .key-feature, .contact-info');
             cards.forEach(card => {
                 card.style.opacity = '0';
                 card.style.transform = 'translateY(30px)';
                 card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
             });
+            
 
-            window.addEventListener('scroll', handleScroll);
-            handleScroll(); 
+            window.addEventListener('scroll', handlescrolling);
+            handlescrolling(); 
         });
     </script>
 </body>
