@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Empty's World</title>
+    <title>empty's world</title>
     <style>
         :root {
             --primary: #7289da;
@@ -501,16 +501,6 @@
             align-items: center;
         }
         
-        .footer-logo {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            background: linear-gradient(to right, var(--primary), #ff73fa);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
         .social-links {
             display: flex;
             gap: 20px;
@@ -584,14 +574,24 @@
         <div id="particles-js"></div>
         <div class="hero-content">
             <h1 class="logo">empty's world</h1>
-            <p class="tagline">Developer, Creator, Innovator</p>
-            <a href="#projects" class="cta-button" onclick="activateTab('projects')">My Projects</a>
-            <a href="#contact" class="cta-button" onclick="activateTab('contact')">Get in Touch</a>
+            <p class="tagline">developer, creator, innovator</p>
+            <a href="#projects" class="cta-button" onclick="activateTab('projects')">my projects</a>
+            <a href="#contact" class="cta-button" onclick="activateTab('contact')">get in touch</a>
         </div>
     </section>
     
+    <div class="nav-container">
+        <div class="tabs">
+            <div class="tab" onclick="activateTab('home')">home</div>
+            <div class="tab" onclick="activateTab('about')">about</div>
+            <div class="tab" onclick="activateTab('projects')">projects</div>
+            <div class="tab" onclick="activateTab('incorp')">incorp</div>
+            <div class="tab" onclick="activateTab('contact')">contact</div>
+        </div>
+    </div>
+    
     <section id="home" class="section">
-        <h2 class="section-title">Welcome to My World</h2>
+        <h2 class="section-title">welcome to my world</h2>
         <div class="content-container">
             <div class="about-content">
                 <div class="about-image">
@@ -599,12 +599,12 @@
                 </div>
                 <div class="about-text">
                     <p>hello there!</p>
-                    <p>Explore my world to discover my latest projects, and see what I've been working on.</p>
+                    <p>explore my world to discover my latest projects, and see what i've been working on.</p>
                     <div class="skill-list">
-                        <div class="skill-badge">Development</div>
-                        <div class="skill-badge">Discord Bots</div>
-                        <div class="skill-badge">Design</div>
-                        <div class="skill-badge">Gaming</div>
+                        <div class="skill-badge">development</div>
+                        <div class="skill-badge">discord bots</div>
+                        <div class="skill-badge">design</div>
+                        <div class="skill-badge">gaming</div>
                     </div>
                 </div>
             </div>
@@ -612,23 +612,23 @@
     </section>
     
     <section id="about" class="section">
-        <h2 class="section-title">About Me</h2>
+        <h2 class="section-title">about me</h2>
         <div class="content-container">
             <div class="about-content">
                 <div class="about-image">
                     <img src="/api/placeholder/300/300" alt="About Image">
                 </div>
                 <div class="about-text">
-                    <p>Hello i am empty? just another programmer!</p>
+                    <p>hello i am empty? just another programmer!</p>
                     <p>uh welcome to my website i guess</p>
-                    <h3 style="margin-top: 20px; color: var(--primary);">My Skills</h3>
+                    <h3 style="margin-top: 20px; color: var(--primary);">my skills</h3>
                     <div class="skill-list">
-                        <div class="skill-badge">JavaScript</div>
-                        <div class="skill-badge">HTML/CSS</div>
-                        <div class="skill-badge">Python</div>
-                        <div class="skill-badge">Lua</div>
-                        <div class="skill-badge">Web Design</div>
-                        <div class="skill-badge">UI/UX</div>
+                        <div class="skill-badge">javascript</div>
+                        <div class="skill-badge">html/css</div>
+                        <div class="skill-badge">python</div>
+                        <div class="skill-badge">lua</div>
+                        <div class="skill-badge">web design</div>
+                        <div class="skill-badge">ui/ux</div>
                     </div>
                 </div>
             </div>
@@ -636,7 +636,7 @@
     </section>
     
     <section id="projects" class="section">
-        <h2 class="section-title">My Projects</h2>
+        <h2 class="section-title">my projects</h2>
         <div class="content-container">
             <div class="project-grid">
                 <div class="project-card">
@@ -644,11 +644,11 @@
                         <img src="/api/placeholder/300/200" alt="Project 1">
                     </div>
                     <div class="project-info">
-                        <h3 class="project-title">Incorp Bot</h3>
-                        <p class="project-description">An advanced Discord economy and entertainment bot with games, battles, and a robust economic system.</p>
+                        <h3 class="project-title">incorp bot</h3>
+                        <p class="project-description">an advanced discord economy and entertainment bot with games, battles, and a robust economic system.</p>
                         <div class="project-tags">
-                            <span class="project-tag">Discord.js</span>
-                            <span class="project-tag">Node.js</span>
+                            <span class="project-tag">discord.js</span>
+                            <span class="project-tag">node.js</span>
                         </div>
                     </div>
                 </div>
@@ -658,12 +658,25 @@
                         <img src="/api/placeholder/300/200" alt="Project 2">
                     </div>
                     <div class="project-info">
-                        <h3 class="project-title">Project Name</h3>
-                        <p class="project-description">Short description of the project goes here. Explain what it does and the technologies used.</p>
+                        <h3 class="project-title">coming soon</h3>
+                        <p class="project-description">project under development. check back later for updates on my latest creation.</p>
                         <div class="project-tags">
-                            <span class="project-tag">Web</span>
-                            <span class="project-tag">JavaScript</span>
-                            <span class="project-tag">CSS</span>
+                            <span class="project-tag">in progress</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="/api/placeholder/300/200" alt="Project 3">
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">portfolio website</h3>
+                        <p class="project-description">this very website you're browsing right now, showcasing my projects and skills.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">html</span>
+                            <span class="project-tag">css</span>
+                            <span class="project-tag">javascript</span>
                         </div>
                     </div>
                 </div>
@@ -672,97 +685,97 @@
     </section>
     
     <section id="incorp" class="section">
-        <h2 class="section-title">Incorp Discord Bot</h2>
+        <h2 class="section-title">incorp discord bot</h2>
         <div class="content-container">
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-coins"></i>
                     </div>
-                    <h3 class="feature-title">Interactive Economy</h3>
-                    <p class="feature-description">Build your fortune through daily rewards, work, and strategic gameplay. Master the market with unique potions, powerful upgrades, and competitive trading!</p>
+                    <h3 class="feature-title">interactive economy</h3>
+                    <p class="feature-description">build your fortune through daily rewards, work, and strategic gameplay. master the market with unique potions, powerful upgrades, and competitive trading!</p>
                 </div>
                 
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-gamepad"></i>
                     </div>
-                    <h3 class="feature-title">Fun Games & Battles</h3>
-                    <p class="feature-description">Dive into exciting multiplayer games! Battle in the Arena with real-time movement and combat, play minigames, and bet on matches. Team up or fight against friends for money!</p>
+                    <h3 class="feature-title">fun games & battles</h3>
+                    <p class="feature-description">dive into exciting multiplayer games! battle in the arena with real-time movement and combat, play minigames, and bet on matches. team up or fight against friends for money!</p>
                 </div>
                 
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-bolt"></i>
                     </div>
-                    <h3 class="feature-title">Power-Ups & Bonuses</h3>
-                    <p class="feature-description">Maximize your earnings with our advanced bonus system! Stack Rebirth bonuses with Potion effects and Upgrades for insane multipliers. Keep your streak for extra rewards!</p>
+                    <h3 class="feature-title">power-ups & bonuses</h3>
+                    <p class="feature-description">maximize your earnings with our advanced bonus system! stack rebirth bonuses with potion effects and upgrades for insane multipliers. keep your streak for extra rewards!</p>
                 </div>
                 
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-server"></i>
                     </div>
-                    <h3 class="feature-title">Fully Self Ran</h3>
-                    <p class="feature-description">Incorp can be added to any Discord server! Contact me directly to get this powerful bot added to your community and start enjoying all of its features.</p>
+                    <h3 class="feature-title">fully self ran</h3>
+                    <p class="feature-description">incorp can be added to any discord server! contact me directly to get this powerful bot added to your community and start enjoying all of its features.</p>
                 </div>
             </div>
             
             <div class="key-features">
-                <h3 class="section-title" style="font-size: 1.8rem;">Key Features</h3>
+                <h3 class="section-title" style="font-size: 1.8rem;">key features</h3>
                 <div class="key-features-list">
                     <div class="key-feature">
                         <div class="key-feature-icon">
                             <i class="fas fa-chart-line"></i>
                         </div>
-                        <span>Track your progress with detailed stats</span>
+                        <span>track your progress with detailed stats</span>
                     </div>
                     
                     <div class="key-feature">
                         <div class="key-feature-icon">
                             <i class="fas fa-trophy"></i>
                         </div>
-                        <span>Compete on global leaderboards</span>
+                        <span>compete on global leaderboards</span>
                     </div>
                     
                     <div class="key-feature">
                         <div class="key-feature-icon">
                             <i class="fas fa-paint-brush"></i>
                         </div>
-                        <span>Customize your gameplay style</span>
+                        <span>customize your gameplay style</span>
                     </div>
                     
                     <div class="key-feature">
                         <div class="key-feature-icon">
                             <i class="fas fa-calendar-alt"></i>
                         </div>
-                        <span>Join events for exclusive rewards</span>
+                        <span>join events for exclusive rewards</span>
                     </div>
                 </div>
             </div>
             
             <div class="contact-info" style="margin-top: 50px;">
-                <h3>Want Incorp in Your Server?</h3>
+                <h3>want incorp in your server?</h3>
                 <p class="feature-description" style="margin: 20px 0;">
-                    Incorp can be added to any Discord server. To get started, just follow these steps:
+                    incorp can be added to any discord server. to get started, just follow these steps:
                 </p>
                 
                 <ul style="list-style-type: none; margin-left: 20px;">
                     <li style="margin-bottom: 10px; position: relative; padding-left: 25px;">
                         <i class="fas fa-check-circle" style="color: var(--primary); position: absolute; left: 0; top: 3px;"></i>
-                        Contact <span class="contact-highlight">empty</span> on Discord
+                        contact <span class="contact-highlight">empty</span> on discord
                     </li>
                     <li style="margin-bottom: 10px; position: relative; padding-left: 25px;">
                         <i class="fas fa-check-circle" style="color: var(--primary); position: absolute; left: 0; top: 3px;"></i>
-                        Send your server invite link
+                        send your server invite link
                     </li>
                     <li style="margin-bottom: 10px; position: relative; padding-left: 25px;">
                         <i class="fas fa-check-circle" style="color: var(--primary); position: absolute; left: 0; top: 3px;"></i>
-                        The bot will be added to your server promptly
+                        the bot will be added to your server promptly
                     </li>
                     <li style="margin-bottom: 10px; position: relative; padding-left: 25px;">
                         <i class="fas fa-check-circle" style="color: var(--primary); position: absolute; left: 0; top: 3px;"></i>
-                        Start enjoying all the features!
+                        start enjoying all the features!
                     </li>
                 </ul>
             </div>
@@ -770,49 +783,39 @@
     </section>
     
     <section id="contact" class="section">
-        <h2 class="section-title">Get in Touch</h2>
+        <h2 class="section-title">get in touch</h2>
         <div class="content-container">
             <div class="contact-info">
                 <p class="feature-description">
-                    Have a question or want to work together? Feel free to reach out to me through any of these channels:
+                    have a question or want to work together? feel free to reach out to me through discord:
                 </p>
                 
                 <div style="margin: 30px 0; display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
                     <div style="display: flex; align-items: center; gap: 10px;">
                         <i class="fab fa-discord" style="font-size: 1.5rem; color: var(--primary);"></i>
-                        <span><span class="contact-highlight">empty</span> on Discord</span>
-                    </div>
-                    
-                    <div style="display: flex; align-items: center; gap: 10px;">
-                        <i class="far fa-envelope" style="font-size: 1.5rem; color: var(--primary);"></i>
-                        <span>email@example.com</span>
-                    </div>
-                    
-                    <div style="display: flex; align-items: center; gap: 10px;">
-                        <i class="fab fa-github" style="font-size: 1.5rem; color: var(--primary);"></i>
-                        <span>github.com/your-username</span>
+                        <span><span class="contact-highlight">empty</span> on discord</span>
                     </div>
                 </div>
                 
                 <div class="contact-form">
-                    <h3 style="margin-bottom: 20px; color: var(--primary);">Send a Message</h3>
+                    <h3 style="margin-bottom: 20px; color: var(--primary);">send a message</h3>
                     <form id="contactForm">
                         <div class="form-group">
-                            <label class="form-label" for="name">Name</label>
-                            <input type="text" id="name" class="form-input" placeholder="Your name">
+                            <label class="form-label" for="name">name</label>
+                            <input type="text" id="name" class="form-input" placeholder="your name">
                         </div>
                         
                         <div class="form-group">
-                            <label class="form-label" for="email">Email</label>
-                            <input type="email" id="email" class="form-input" placeholder="Your email">
+                            <label class="form-label" for="discord">discord tag</label>
+                            <input type="text" id="discord" class="form-input" placeholder="your discord tag">
                         </div>
                         
                         <div class="form-group">
-                            <label class="form-label" for="message">Message</label>
-                            <textarea id="message" class="form-textarea" placeholder="Your message"></textarea>
+                            <label class="form-label" for="message">message</label>
+                            <textarea id="message" class="form-textarea" placeholder="your message"></textarea>
                         </div>
                         
-                        <button type="button" class="form-button">Send Message</button>
+                        <button type="button" class="form-button">send message</button>
                     </form>
                 </div>
             </div>
@@ -821,5 +824,53 @@
     
     <footer>
         <div class="footer-content">
-            <div class="footer-logo">Empty's World</div>
-            <div class="social-links
+            <div class="social-links">
+                <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+            </div>
+            <p class="footer-text">© 2025 · made with ❤️</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Particles.js configuration
+        document.addEventListener('DOMContentLoaded', function() {
+            particlesJS("particles-js", {
+                "particles": {
+                    "number": {
+                        "value": 80,
+                        "density": {
+                            "enable": true,
+                            "value_area": 800
+                        }
+                    },
+                    "color": {
+                        "value": "#7289da"
+                    },
+                    "shape": {
+                        "type": "circle",
+                        "stroke": {
+                            "width": 0,
+                            "color": "#000000"
+                        },
+                        "polygon": {
+                            "nb_sides": 5
+                        }
+                    },
+                    "opacity": {
+                        "value": 0.5,
+                        "random": false,
+                        "anim": {
+                            "enable": false,
+                            "speed": 1,
+                            "opacity_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "size": {
+                        "value": 3,
+                        "random": true,
+                        "anim": {
+                            "enable": false,
+                            "speed": 40,
+                            "
