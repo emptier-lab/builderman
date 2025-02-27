@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>empty's world</title>
+    <title>Incorp - The Ultimate Discord Economy Bot</title>
     <style>
         :root {
             --primary: #7289da;
@@ -172,32 +172,8 @@
             background: rgba(114, 137, 218, 0.1);
         }
         
-        .section {
+        .features {
             padding: 80px 20px;
-            display: none;
-        }
-        
-        .section.active {
-            display: block;
-        }
-        
-        #home {
-            background: var(--secondary);
-        }
-        
-        #about {
-            background: var(--dark);
-        }
-        
-        #projects {
-            background: var(--secondary);
-        }
-        
-        #incorp {
-            background: var(--dark);
-        }
-        
-        #contact {
             background: var(--secondary);
         }
         
@@ -211,137 +187,13 @@
             color: transparent;
         }
         
-        .content-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .about-content {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 40px;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .about-image {
-            flex: 0 0 300px;
-            height: 300px;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: var(--glow);
-            border: 2px solid var(--primary);
-        }
-        
-        .about-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .about-text {
-            flex: 1;
-            min-width: 300px;
-        }
-        
-        .about-text p {
-            margin-bottom: 15px;
-            line-height: 1.6;
-        }
-        
-        .skill-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 20px;
-        }
-        
-        .skill-badge {
-            background: rgba(114, 137, 218, 0.1);
-            border: 1px solid var(--primary);
-            border-radius: 20px;
-            padding: 8px 15px;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-        }
-        
-        .skill-badge:hover {
-            background: var(--primary);
-            transform: translateY(-3px);
-            box-shadow: var(--glow);
-        }
-        
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
-        }
-        
-        .project-card {
-            background: rgba(35, 39, 42, 0.5);
-            border-radius: 10px;
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid rgba(114, 137, 218, 0.2);
-        }
-        
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--glow);
-        }
-        
-        .project-image {
-            width: 100%;
-            height: 200px;
-            overflow: hidden;
-        }
-        
-        .project-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-        
-        .project-card:hover .project-image img {
-            transform: scale(1.1);
-        }
-        
-        .project-info {
-            padding: 20px;
-        }
-        
-        .project-title {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-            color: var(--primary);
-        }
-        
-        .project-description {
-            color: #b9bbbe;
-            margin-bottom: 15px;
-            line-height: 1.5;
-        }
-        
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-        
-        .project-tag {
-            background: rgba(114, 137, 218, 0.1);
-            border-radius: 15px;
-            padding: 5px 10px;
-            font-size: 0.8rem;
-        }
-        
         .features-grid {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
         
         .feature-card {
@@ -363,6 +215,35 @@
             box-shadow: var(--glow);
         }
         
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(114, 137, 218, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.7s ease;
+            opacity: 0;
+        }
+        
+        .feature-card:hover::before {
+            opacity: 1;
+            animation: shine 1.5s forwards;
+        }
+        
+        @keyframes shine {
+            0% {
+                left: -100%;
+                opacity: 0.5;
+            }
+            100% {
+                left: 100%;
+                opacity: 0;
+            }
+        }
+        
         .feature-icon {
             font-size: 3rem;
             margin-bottom: 20px;
@@ -380,13 +261,16 @@
         }
         
         .key-features {
-            margin-top: 50px;
+            background: var(--dark);
+            padding: 80px 20px;
         }
         
         .key-features-list {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
+            max-width: 1200px;
+            margin: 0 auto;
             gap: 20px;
         }
         
@@ -416,6 +300,12 @@
             font-size: 1.2rem;
         }
         
+        .how-to-add {
+            background: var(--secondary);
+            padding: 80px 20px;
+            text-align: center;
+        }
+        
         .contact-info {
             background: rgba(35, 39, 42, 0.8);
             border-radius: 10px;
@@ -431,59 +321,28 @@
             color: var(--primary);
         }
         
-        .contact-form {
-            margin-top: 30px;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-        
-        .form-input, .form-textarea {
-            width: 100%;
-            padding: 12px 15px;
-            background: rgba(35, 39, 42, 0.5);
-            border: 1px solid rgba(114, 137, 218, 0.3);
-            border-radius: 8px;
-            color: var(--text);
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-        
-        .form-input:focus, .form-textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 2px rgba(114, 137, 218, 0.2);
-        }
-        
-        .form-textarea {
-            resize: vertical;
-            min-height: 150px;
-        }
-        
-        .form-button {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            font-size: 1rem;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
+        .contact-steps {
+            text-align: left;
+            margin-top: 20px;
             display: inline-block;
-            margin-top: 10px;
         }
         
-        .form-button:hover {
-            background: var(--accent);
-            transform: translateY(-3px);
-            box-shadow: var(--glow);
+        .contact-steps li {
+            margin-bottom: 15px;
+            list-style-type: none;
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .contact-steps li:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 10px;
+            height: 10px;
+            background-color: var(--primary);
+            border-radius: 50%;
         }
         
         footer {
@@ -499,6 +358,16 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--primary), #ff73fa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
         
         .social-links {
@@ -573,304 +442,298 @@
     <section class="hero">
         <div id="particles-js"></div>
         <div class="hero-content">
-            <h1 class="logo">empty's world</h1>
-            <p class="tagline">developer, creator, innovator</p>
-            <a href="#projects" class="cta-button" onclick="activateTab('projects')">my projects</a>
-            <a href="#contact" class="cta-button" onclick="activateTab('contact')">get in touch</a>
+            <h1 class="logo">Incorp</h1>
+            <p class="tagline">The Ultimate Economy & Entertainment Bot for Discord</p>
+            <a href="#how-to-add" class="cta-button">Add to Discord</a>
+            <a href="#features" class="cta-button">Explore Features</a>
         </div>
     </section>
     
     <div class="nav-container">
-        <div class="tabs">
-            <div class="tab" onclick="activateTab('home')">home</div>
-            <div class="tab" onclick="activateTab('about')">about</div>
-            <div class="tab" onclick="activateTab('projects')">projects</div>
-            <div class="tab" onclick="activateTab('incorp')">incorp</div>
-            <div class="tab" onclick="activateTab('contact')">contact</div>
+        <div class="tabs" id="nav-tabs">
+            <div class="tab active" data-target="features">Features</div>
+            <div class="tab" data-target="how-to-add">Add to Server</div>
         </div>
     </div>
     
-    <section id="home" class="section">
-        <h2 class="section-title">welcome to my world</h2>
-        <div class="content-container">
-            <div class="about-content">
-                <div class="about-image">
-                    <img src="/api/placeholder/300/300" alt="Profile Image">
+    <section class="features" id="features">
+        <h2 class="section-title">What Makes Incorp Special</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-coins"></i>
                 </div>
-                <div class="about-text">
-                    <p>hello there!</p>
-                    <p>explore my world to discover my latest projects, and see what i've been working on.</p>
-                    <div class="skill-list">
-                        <div class="skill-badge">development</div>
-                        <div class="skill-badge">discord bots</div>
-                        <div class="skill-badge">design</div>
-                        <div class="skill-badge">gaming</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <section id="about" class="section">
-        <h2 class="section-title">about me</h2>
-        <div class="content-container">
-            <div class="about-content">
-                <div class="about-image">
-                    <img src="/api/placeholder/300/300" alt="About Image">
-                </div>
-                <div class="about-text">
-                    <p>hello i am empty? just another programmer!</p>
-                    <p>uh welcome to my website i guess</p>
-                    <h3 style="margin-top: 20px; color: var(--primary);">my skills</h3>
-                    <div class="skill-list">
-                        <div class="skill-badge">javascript</div>
-                        <div class="skill-badge">html/css</div>
-                        <div class="skill-badge">python</div>
-                        <div class="skill-badge">lua</div>
-                        <div class="skill-badge">web design</div>
-                        <div class="skill-badge">ui/ux</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <section id="projects" class="section">
-        <h2 class="section-title">my projects</h2>
-        <div class="content-container">
-            <div class="project-grid">
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="/api/placeholder/300/200" alt="Project 1">
-                    </div>
-                    <div class="project-info">
-                        <h3 class="project-title">incorp bot</h3>
-                        <p class="project-description">an advanced discord economy and entertainment bot with games, battles, and a robust economic system.</p>
-                        <div class="project-tags">
-                            <span class="project-tag">discord.js</span>
-                            <span class="project-tag">node.js</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="/api/placeholder/300/200" alt="Project 2">
-                    </div>
-                    <div class="project-info">
-                        <h3 class="project-title">coming soon</h3>
-                        <p class="project-description">project under development. check back later for updates on my latest creation.</p>
-                        <div class="project-tags">
-                            <span class="project-tag">in progress</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="/api/placeholder/300/200" alt="Project 3">
-                    </div>
-                    <div class="project-info">
-                        <h3 class="project-title">portfolio website</h3>
-                        <p class="project-description">this very website you're browsing right now, showcasing my projects and skills.</p>
-                        <div class="project-tags">
-                            <span class="project-tag">html</span>
-                            <span class="project-tag">css</span>
-                            <span class="project-tag">javascript</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <section id="incorp" class="section">
-        <h2 class="section-title">incorp discord bot</h2>
-        <div class="content-container">
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-coins"></i>
-                    </div>
-                    <h3 class="feature-title">interactive economy</h3>
-                    <p class="feature-description">build your fortune through daily rewards, work, and strategic gameplay. master the market with unique potions, powerful upgrades, and competitive trading!</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-gamepad"></i>
-                    </div>
-                    <h3 class="feature-title">fun games & battles</h3>
-                    <p class="feature-description">dive into exciting multiplayer games! battle in the arena with real-time movement and combat, play minigames, and bet on matches. team up or fight against friends for money!</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-bolt"></i>
-                    </div>
-                    <h3 class="feature-title">power-ups & bonuses</h3>
-                    <p class="feature-description">maximize your earnings with our advanced bonus system! stack rebirth bonuses with potion effects and upgrades for insane multipliers. keep your streak for extra rewards!</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-server"></i>
-                    </div>
-                    <h3 class="feature-title">fully self ran</h3>
-                    <p class="feature-description">incorp can be added to any discord server! contact me directly to get this powerful bot added to your community and start enjoying all of its features.</p>
-                </div>
+                <h3 class="feature-title">Interactive Economy</h3>
+                <p class="feature-description">Build your fortune through daily rewards, work, and strategic gameplay. Master the market with unique potions, powerful upgrades, and competitive trading!</p>
             </div>
             
-            <div class="key-features">
-                <h3 class="section-title" style="font-size: 1.8rem;">key features</h3>
-                <div class="key-features-list">
-                    <div class="key-feature">
-                        <div class="key-feature-icon">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        <span>track your progress with detailed stats</span>
-                    </div>
-                    
-                    <div class="key-feature">
-                        <div class="key-feature-icon">
-                            <i class="fas fa-trophy"></i>
-                        </div>
-                        <span>compete on global leaderboards</span>
-                    </div>
-                    
-                    <div class="key-feature">
-                        <div class="key-feature-icon">
-                            <i class="fas fa-paint-brush"></i>
-                        </div>
-                        <span>customize your gameplay style</span>
-                    </div>
-                    
-                    <div class="key-feature">
-                        <div class="key-feature-icon">
-                            <i class="fas fa-calendar-alt"></i>
-                        </div>
-                        <span>join events for exclusive rewards</span>
-                    </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-gamepad"></i>
                 </div>
+                <h3 class="feature-title">Fun Games & Battles</h3>
+                <p class="feature-description">Dive into exciting multiplayer games! Battle in the Arena with real-time movement and combat, play minigames, and bet on matches. Team up or fight against friends for money!</p>
             </div>
             
-            <div class="contact-info" style="margin-top: 50px;">
-                <h3>want incorp in your server?</h3>
-                <p class="feature-description" style="margin: 20px 0;">
-                    incorp can be added to any discord server. to get started, just follow these steps:
-                </p>
-                
-                <ul style="list-style-type: none; margin-left: 20px;">
-                    <li style="margin-bottom: 10px; position: relative; padding-left: 25px;">
-                        <i class="fas fa-check-circle" style="color: var(--primary); position: absolute; left: 0; top: 3px;"></i>
-                        contact <span class="contact-highlight">empty</span> on discord
-                    </li>
-                    <li style="margin-bottom: 10px; position: relative; padding-left: 25px;">
-                        <i class="fas fa-check-circle" style="color: var(--primary); position: absolute; left: 0; top: 3px;"></i>
-                        send your server invite link
-                    </li>
-                    <li style="margin-bottom: 10px; position: relative; padding-left: 25px;">
-                        <i class="fas fa-check-circle" style="color: var(--primary); position: absolute; left: 0; top: 3px;"></i>
-                        the bot will be added to your server promptly
-                    </li>
-                    <li style="margin-bottom: 10px; position: relative; padding-left: 25px;">
-                        <i class="fas fa-check-circle" style="color: var(--primary); position: absolute; left: 0; top: 3px;"></i>
-                        start enjoying all the features!
-                    </li>
-                </ul>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <h3 class="feature-title">Power-Ups & Bonuses</h3>
+                <p class="feature-description">Maximize your earnings with our advanced bonus system! Stack Rebirth bonuses with Potion effects and Upgrades for insane multipliers. Keep your streak for extra rewards!</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-server"></i>
+                </div>
+                <h3 class="feature-title">Fully Self Ran</h3>
+                <p class="feature-description">Incorp can be added to any Discord server! Contact the developer directly to get this powerful bot added to your community and start enjoying all of its features.</p>
             </div>
         </div>
     </section>
     
-    <section id="contact" class="section">
-        <h2 class="section-title">get in touch</h2>
-        <div class="content-container">
-            <div class="contact-info">
+    <section class="key-features">
+        <h2 class="section-title">Key Features</h2>
+        <div class="key-features-list">
+            <div class="key-feature">
+                <div class="key-feature-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <span>Track your progress with detailed stats</span>
+            </div>
+            
+            <div class="key-feature">
+                <div class="key-feature-icon">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                <span>Compete on global leaderboards</span>
+            </div>
+            
+            <div class="key-feature">
+                <div class="key-feature-icon">
+                    <i class="fas fa-paint-brush"></i>
+                </div>
+                <span>Customize your gameplay style</span>
+            </div>
+            
+            <div class="key-feature">
+                <div class="key-feature-icon">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+                <span>Join events for exclusive rewards</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="how-to-add" id="how-to-add">
+        <h2 class="section-title">Add Incorp to Your Server</h2>
+        <div class="contact-info">
+            <h3>Getting Incorp is Simple!</h3>
+            <p class="feature-description" style="margin: 20px 0;">
+                Incorp can be added to any Discord server. To get started, just follow these steps:
+            </p>
+            
+            <ul class="contact-steps">
+                <li>Contact <span class="contact-highlight">empty?</span> on Discord</li>
+                <li>Send your server invite link</li>
+                <li>The bot will be added to your server promptly</li>
+                <li>Start enjoying all the economic and entertainment features!</li>
+            </ul>
+            
+            <div style="margin-top: 30px;">
                 <p class="feature-description">
-                    have a question or want to work together? feel free to reach out to me through discord:
+                    <i class="fas fa-info-circle" style="color: var(--primary); margin-right: 8px;"></i>
+                    Just contact <span class="contact-highlight">empty?</span> on Discord and send your server link to get Incorp added!
                 </p>
-                
-                <div style="margin: 30px 0; display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
-                    <div style="display: flex; align-items: center; gap: 10px;">
-                        <i class="fab fa-discord" style="font-size: 1.5rem; color: var(--primary);"></i>
-                        <span><span class="contact-highlight">empty</span> on discord</span>
-                    </div>
-                </div>
-                
-                <div class="contact-form">
-                    <h3 style="margin-bottom: 20px; color: var(--primary);">send a message</h3>
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <label class="form-label" for="name">name</label>
-                            <input type="text" id="name" class="form-input" placeholder="your name">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="form-label" for="discord">discord tag</label>
-                            <input type="text" id="discord" class="form-input" placeholder="your discord tag">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="form-label" for="message">message</label>
-                            <textarea id="message" class="form-textarea" placeholder="your message"></textarea>
-                        </div>
-                        
-                        <button type="button" class="form-button">send message</button>
-                    </form>
-                </div>
             </div>
         </div>
     </section>
     
     <footer>
         <div class="footer-content">
+            <div class="footer-logo">Incorp</div>
             <div class="social-links">
                 <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
                 <a href="#" class="social-link"><i class="fab fa-github"></i></a>
             </div>
-            <p class="footer-text">© 2025 · made with ❤️</p>
+            <p class="footer-text">Developed by empty?</p>
         </div>
     </footer>
     
     <script>
-        // Particles.js configuration
-        document.addEventListener('DOMContentLoaded', function() {
-            particlesJS("particles-js", {
-                "particles": {
-                    "number": {
-                        "value": 80,
-                        "density": {
-                            "enable": true,
-                            "value_area": 800
-                        }
-                    },
-                    "color": {
-                        "value": "#7289da"
-                    },
-                    "shape": {
-                        "type": "circle",
-                        "stroke": {
-                            "width": 0,
-                            "color": "#000000"
-                        },
-                        "polygon": {
-                            "nb_sides": 5
-                        }
-                    },
-                    "opacity": {
-                        "value": 0.5,
-                        "random": false,
-                        "anim": {
-                            "enable": false,
-                            "speed": 1,
-                            "opacity_min": 0.1,
-                            "sync": false
-                        }
-                    },
-                    "size": {
-                        "value": 3,
-                        "random": true,
-                        "anim": {
-                            "enable": false,
-                            "speed": 40,
-                            "
+        particlesJS("particles-js", {
+          "particles": {
+            "number": {
+              "value": 80,
+              "density": {
+                "enable": true,
+                "value_area": 800
+              }
+            },
+            "color": {
+              "value": ["#7289da", "#ff73fa"]
+            },
+            "shape": {
+              "type": "circle",
+              "stroke": {
+                "width": 0,
+                "color": "#000000"
+              }
+            },
+            "opacity": {
+              "value": 0.7,
+              "random": false,
+              "anim": {
+                "enable": false
+              }
+            },
+            "size": {
+              "value": 2,
+              "random": true,
+              "anim": {
+                "enable": false
+              }
+            },
+            "line_linked": {
+              "enable": true,
+              "distance": 200,
+              "color": "#ff73fa",
+              "opacity": 0.3,
+              "width": 0.8
+            },
+            "move": {
+              "enable": true,
+              "speed": 2,
+              "direction": "none",
+              "random": true,
+              "straight": false,
+              "out_mode": "out",
+              "bounce": true,
+              "attract": {
+                "enable": true,
+                "rotateX": 600,
+                "rotateY": 1200
+              }
+            }
+          },
+          "interactivity": {
+            "detect_on": "canvas",
+            "events": {
+              "onhover": {
+                "enable": true,
+                "mode": "repulse"
+              },
+              "onclick": {
+                "enable": true,
+                "mode": "push"
+              },
+              "resize": true
+            },
+            "modes": {
+              "grab": {
+                "distance": 40,
+                "line_linked": {
+                  "opacity": 1
+                }
+              },
+              "bubble": {
+                "distance": 150,
+                "size": 20,
+                "duration": 2,
+                "opacity": 8,
+                "speed": 3
+              },
+              "repulse": {
+                "distance": 100,
+                "duration": 0.2
+              },
+              "push": {
+                "particles_nb": 4
+              },
+              "remove": {
+                "particles_nb": 2
+              }
+            }
+          },
+          "retina_detect": true
+        });
+
+        function setup() {
+            const tabs = document.querySelectorAll('.tab');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+
+                    const target = tab.getAttribute('data-target');
+                    const targetElement = document.getElementById(target);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 70,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        }
+
+        function scrollanim() {
+            const elements = document.querySelectorAll('.feature-card, .key-feature, .contact-info');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
+            elements.forEach(element => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(30px)';
+                element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(element);
+            });
+        }
+        
+        function navscroll() {
+            const navContainer = document.querySelector('.nav-container');
+            let lastScroll = 0;
+            
+            window.addEventListener('scroll', () => {
+                const currentScroll = window.pageYOffset;
+                
+                if (currentScroll <= 0) {
+                    navContainer.style.transform = 'translateY(0)';
+                    navContainer.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.2)';
+                    return;
+                }
+                
+                if (currentScroll > lastScroll && currentScroll > 200) {
+                    navContainer.style.transform = 'translateY(-100%)';
+                } else {
+                    navContainer.style.transform = 'translateY(0)';
+                    navContainer.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.2)';
+                }
+                
+                lastScroll = currentScroll;
+            });
+        }
+        
+        window.addEventListener('DOMContentLoaded', () => {
+            setup();
+            scrollanim();
+            navscroll();
+        });
+    </script>
+</body>
+</html>
