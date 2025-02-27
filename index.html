@@ -37,31 +37,19 @@
             overflow: hidden;
         }
         
-        .particles {
+        #particles-js {
             position: absolute;
             width: 100%;
             height: 100%;
-        }
-        
-        .particle {
-            position: absolute;
-            border-radius: 50%;
-            opacity: 0.6;
-            animation: float 8s infinite ease-in-out;
-        }
-        
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0) translateX(0);
-            }
-            50% {
-                transform: translateY(-20px) translateX(10px);
-            }
+            top: 0;
+            left: 0;
+            z-index: 1;
         }
         
         .hero-content {
+            position: relative;
+            z-index: 2;
             text-align: center;
-            z-index: 10;
             max-width: 800px;
             padding: 0 20px;
         }
@@ -443,10 +431,11 @@
     </style>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 </head>
 <body>
     <section class="hero">
-        <div class="particles" id="particles"></div>
+        <div id="particles-js"></div>
         <div class="hero-content">
             <h1 class="logo">Incorp</h1>
             <p class="tagline">The Ultimate Economy & Entertainment Bot for Discord</p>
@@ -569,32 +558,79 @@
     </footer>
     
     <script>
-        function create() {
-            const particles = document.getElementById('particles');
-            const particleCount = 30;
-            const colors = ['#7289da', '#5865f2', '#ff73fa'];
-            
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-
-                const size = Math.random() * 10 + 5;
-                const color = colors[Math.floor(Math.random() * colors.length)];
-
-                const left = Math.random() * 100;
-                const top = Math.random() * 100;
-
-                particle.style.width = size + 'px';
-                particle.style.height = size + 'px';
-                particle.style.backgroundColor = color;
-                particle.style.left = left + '%';
-                particle.style.top = top + '%';
-
-                particle.style.animationDelay = Math.random() * 5 + 's';
-                
-                particles.appendChild(particle);
-            }
-        }
+        particlesJS("particles-js", {
+            "particles": {
+                "number": {
+                    "value": 80,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#7289da"
+                },
+                "shape": {
+                    "type": "circle"
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": false,
+                    "anim": {
+                        "enable": false
+                    }
+                },
+                "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": {
+                        "enable": false
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#7289da",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 2,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "grab"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 140,
+                        "line_linked": {
+                            "opacity": 1
+                        }
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    }
+                }
+            },
+            "retina_detect": true
+        });
 
         function setup() {
             const tabs = document.querySelectorAll('.tab');
@@ -666,7 +702,6 @@
         }
         
         window.addEventListener('DOMContentLoaded', () => {
-            create();
             setup();
             scrollanim();
             navscroll();
