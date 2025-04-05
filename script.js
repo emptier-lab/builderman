@@ -1,255 +1,444 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Change the h1 text to "incorp"
-    const h1Element = document.querySelector('h1.logo');
-    if (h1Element) {
-        h1Element.textContent = "incorp";
-    }
-    
-    // Make the window draggable with improved dragging
-    makeDraggableImproved(document.querySelector('.window-titlebar'), document.querySelector('.mac-window'));
-    
-    // Make the window resizable
-    makeResizable(document.querySelector('.window-resize-handle'), document.querySelector('.mac-window'));
-    
-    // Initialize testimonial slider
+    // Initialize all components
+    initWindowControls();
+    initSidebar();
     initTestimonialSlider();
+    addSmoothScrolling();
+    addAnimations();
     
-    // Function to make the window draggable with improved functionality
-    function makeDraggableImproved(handle, element) {
-        let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-        let isDragging = false;
-        let initialX, initialY;
-        let windowInitialLeft, windowInitialTop;
-        
-        if (!handle || !element) return;
-        
-        // Set initial position if not already set
-        if (!element.style.position || element.style.position === 'static') {
-            element.style.position = 'relative';
-        }
-        
-        // Add visual feedback for draggable area
-        handle.style.cursor = 'grab';
-        
-        handle.addEventListener('mousedown', startDrag);
-        handle.addEventListener('touchstart', startDrag, { passive: false });
-        
-        function startDrag(e) {
+    // Add Discord redirect
+    const discordButton = document.querySelector('.primary-button');
+    if (discordButton) {
+        discordButton.addEventListener('click', function(e) {
             e.preventDefault();
-            isDragging = true;
-            
-            // Change cursor style during drag
-            handle.style.cursor = 'grabbing';
-            
-            // Get initial positions
-            if (e.type === 'touchstart') {
-                initialX = e.touches[0].clientX;
-                initialY = e.touches[0].clientY;
-            } else {
-                initialX = e.clientX;
-                initialY = e.clientY;
-            }
-            
-            // Get window's initial position
-            windowInitialLeft = element.offsetLeft;
-            windowInitialTop = element.offsetTop;
-            
-            // Add event listeners for drag and end
-            document.addEventListener('mousemove', drag);
-            document.addEventListener('touchmove', drag, { passive: false });
-            document.addEventListener('mouseup', endDrag);
-            document.addEventListener('touchend', endDrag);
-            
-            // Add a class to indicate dragging state
-            element.classList.add('dragging');
-        }
-        
-        function drag(e) {
-            if (!isDragging) return;
-            e.preventDefault();
-            
-            let currentX, currentY;
-            
-            if (e.type === 'touchmove') {
-                currentX = e.touches[0].clientX;
-                currentY = e.touches[0].clientY;
-            } else {
-                currentX = e.clientX;
-                currentY = e.clientY;
-            }
-            
-            // Calculate the distance moved
-            const deltaX = currentX - initialX;
-            const deltaY = currentY - initialY;
-            
-            // Apply smooth movement with requestAnimationFrame for better performance
-            requestAnimationFrame(() => {
-                // Set new position with boundaries to keep window visible
-                const newLeft = windowInitialLeft + deltaX;
-                const newTop = windowInitialTop + deltaY;
-                
-                // Keep window within viewport bounds
-                const maxLeft = window.innerWidth - element.offsetWidth;
-                const maxTop = window.innerHeight - element.offsetHeight;
-                
-                element.style.left = `${Math.max(0, Math.min(newLeft, maxLeft))}px`;
-                element.style.top = `${Math.max(0, Math.min(newTop, maxTop))}px`;
-            });
-        }
-        
-        function endDrag() {
-            if (!isDragging) return;
-            
-            isDragging = false;
-            handle.style.cursor = 'grab';
-            element.classList.remove('dragging');
-            
-            // Remove event listeners
-            document.removeEventListener('mousemove', drag);
-            document.removeEventListener('touchmove', drag);
-            document.removeEventListener('mouseup', endDrag);
-            document.removeEventListener('touchend', endDrag);
-        }
-    }
-    
-    // Function to make the window resizable
-    function makeResizable(handle, element) {
-        let startX, startY, startWidth, startHeight;
-        
-        handle.addEventListener('mousedown', function(e) {
-            e.preventDefault();
-            startX = e.clientX;
-            startY = e.clientY;
-            startWidth = parseInt(document.defaultView.getComputedStyle(element).width, 10);
-            startHeight = parseInt(document.defaultView.getComputedStyle(element).height, 10);
-            document.addEventListener('mousemove', resize);
-            document.addEventListener('mouseup', stopResize);
+            window.open('https://discord.com/users/1333972569014931466', '_blank');
         });
-        
-        function resize(e) {
-            element.style.width = (startWidth + e.clientX - startX) + 'px';
-            element.style.height = (startHeight + e.clientY - startY) + 'px';
-        }
-        
-        function stopResize() {
-            document.removeEventListener('mousemove', resize);
-            document.removeEventListener('mouseup', stopResize);
-        }
     }
+});
+
+// Window Controls
+function initWindowControls() {
+    // Disabled draggable functionality as requested
+    // makeDraggableImproved(document.querySelector('.window-titlebar'));
     
-    // Function to initialize the testimonial slider
-    function initTestimonialSlider() {
-        const testimonials = document.querySelectorAll('.testimonial');
-        const dots = document.querySelectorAll('.dot');
-        const prevBtn = document.querySelector('.prev-btn');
-        const nextBtn = document.querySelector('.next-btn');
-        let currentIndex = 0;
-        
-        // Function to show the current testimonial
-        function showTestimonial(index) {
-            // Hide all testimonials
-            testimonials.forEach(testimonial => {
-                testimonial.classList.remove('active');
-            });
-            
-            // Show the current testimonial
-            testimonials[index].classList.add('active');
-            
-            // Update active dot
-            dots.forEach((dot, i) => {
-                dot.classList.toggle('active', i === index);
-            });
-            
-            // Update current index
-            currentIndex = index;
-        }
-        
-        // Add click event to previous button
-        if (prevBtn) {
-            prevBtn.addEventListener('click', function() {
-                const newIndex = (currentIndex > 0) ? currentIndex - 1 : testimonials.length - 1;
-                showTestimonial(newIndex);
-            });
-        }
-        
-        // Add click event to next button
-        if (nextBtn) {
-            nextBtn.addEventListener('click', function() {
-                const newIndex = (currentIndex < testimonials.length - 1) ? currentIndex + 1 : 0;
-                showTestimonial(newIndex);
-            });
-        }
-        
-        // Add click events to dots
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', function() {
-                showTestimonial(index);
-            });
-        });
-        
-        // Auto-advance the slider every 5 seconds
-        setInterval(function() {
-            const newIndex = (currentIndex < testimonials.length - 1) ? currentIndex + 1 : 0;
-            showTestimonial(newIndex);
-        }, 5000);
-    }
+    makeResizable(document.querySelector('.mac-window'));
     
-    // Add click handlers for window buttons
+    // Add window button functionality
     const closeButton = document.querySelector('.window-button.close');
     const minimizeButton = document.querySelector('.window-button.minimize');
     const maximizeButton = document.querySelector('.window-button.maximize');
     
-    if (closeButton) {
-        closeButton.addEventListener('click', function() {
-            alert('This would close the window in a real application.');
-        });
-    }
+    closeButton.addEventListener('click', function() {
+        const macWindow = document.querySelector('.mac-window');
+        macWindow.style.transform = 'scale(0.95)';
+        macWindow.style.opacity = '0';
+        setTimeout(() => {
+            macWindow.style.display = 'none';
+            // Show a message that this is just a demo
+            const message = document.createElement('div');
+            message.className = 'demo-message';
+            message.innerHTML = `
+                <div class="demo-content">
+                    <h2>Mac OS Demo</h2>
+                    <p>This is a demonstration of the incorp interface. In a real application, this would close the window.</p>
+                    <button id="reopen-window">Reopen Window</button>
+                </div>
+            `;
+            document.body.appendChild(message);
+            
+            document.getElementById('reopen-window').addEventListener('click', function() {
+                document.body.removeChild(message);
+                macWindow.style.display = 'flex';
+                setTimeout(() => {
+                    macWindow.style.transform = 'scale(1)';
+                    macWindow.style.opacity = '1';
+                }, 10);
+            });
+        }, 300);
+    });
     
-    if (minimizeButton) {
-        minimizeButton.addEventListener('click', function() {
-            const macWindow = document.querySelector('.mac-window');
-            macWindow.style.transform = 'scale(0.9)';
-            macWindow.style.opacity = '0.8';
-            setTimeout(() => {
-                macWindow.style.transform = 'scale(1)';
-                macWindow.style.opacity = '1';
-            }, 300);
-        });
-    }
+    minimizeButton.addEventListener('click', function() {
+        const macWindow = document.querySelector('.mac-window');
+        macWindow.style.transform = 'scale(0.95) translateY(20px)';
+        macWindow.style.opacity = '0';
+        setTimeout(() => {
+            macWindow.style.display = 'none';
+            // Show a message that this is just a demo
+            const message = document.createElement('div');
+            message.className = 'demo-message';
+            message.innerHTML = `
+                <div class="demo-content">
+                    <h2>Mac OS Demo</h2>
+                    <p>This is a demonstration of the incorp interface. In a real application, this would minimize the window.</p>
+                    <button id="restore-window">Restore Window</button>
+                </div>
+            `;
+            document.body.appendChild(message);
+            
+            document.getElementById('restore-window').addEventListener('click', function() {
+                document.body.removeChild(message);
+                macWindow.style.display = 'flex';
+                setTimeout(() => {
+                    macWindow.style.transform = 'scale(1)';
+                    macWindow.style.opacity = '1';
+                }, 10);
+            });
+        }, 300);
+    });
     
-    if (maximizeButton) {
-        maximizeButton.addEventListener('click', function() {
-            const macWindow = document.querySelector('.mac-window');
-            if (macWindow.classList.contains('maximized')) {
-                macWindow.classList.remove('maximized');
-                macWindow.style.width = '90%';
-                macWindow.style.height = '85vh';
-            } else {
-                macWindow.classList.add('maximized');
-                macWindow.style.width = '100%';
-                macWindow.style.height = '100vh';
-                macWindow.style.borderRadius = '0';
-            }
-        });
+    maximizeButton.addEventListener('click', function() {
+        const macWindow = document.querySelector('.mac-window');
+        if (macWindow.classList.contains('maximized')) {
+            macWindow.classList.remove('maximized');
+            macWindow.style.width = '90%';
+            macWindow.style.height = '85vh';
+        } else {
+            macWindow.classList.add('maximized');
+            macWindow.style.width = '100%';
+            macWindow.style.height = '100vh';
+            macWindow.style.borderRadius = '0';
+        }
+    });
+}
+
+// Make an element draggable (improved version) - DISABLED
+function makeDraggableImproved(element) {
+    // Function disabled as requested
+    return;
+}
+
+// Make an element resizable
+function makeResizable(element) {
+    const resizeHandle = element.querySelector('.window-resize-handle');
+    let isResizing = false;
+    let initialWidth, initialHeight, initialX, initialY;
+
+    resizeHandle.addEventListener('mousedown', startResize);
+    resizeHandle.addEventListener('touchstart', startResize, { passive: false });
+
+    function startResize(e) {
+        e.preventDefault();
+        isResizing = true;
+        element.classList.add('resizing');
+        
+        if (e.type === 'touchstart') {
+            initialX = e.touches[0].clientX;
+            initialY = e.touches[0].clientY;
+        } else {
+            initialX = e.clientX;
+            initialY = e.clientY;
+        }
+        
+        initialWidth = element.offsetWidth;
+        initialHeight = element.offsetHeight;
+        
+        document.addEventListener('mousemove', resize);
+        document.addEventListener('touchmove', resize, { passive: false });
+        document.addEventListener('mouseup', stopResize);
+        document.addEventListener('touchend', stopResize);
     }
-    
-    // Add sidebar navigation functionality
+
+    function resize(e) {
+        if (!isResizing) return;
+        e.preventDefault();
+        
+        let clientX, clientY;
+        if (e.type === 'touchmove') {
+            clientX = e.touches[0].clientX;
+            clientY = e.touches[0].clientY;
+        } else {
+            clientX = e.clientX;
+            clientY = e.clientY;
+        }
+        
+        const deltaX = clientX - initialX;
+        const deltaY = clientY - initialY;
+        
+        const newWidth = Math.max(600, initialWidth + deltaX);
+        const newHeight = Math.max(400, initialHeight + deltaY);
+        
+        element.style.width = newWidth + 'px';
+        element.style.height = newHeight + 'px';
+    }
+
+    function stopResize() {
+        isResizing = false;
+        element.classList.remove('resizing');
+        document.removeEventListener('mousemove', resize);
+        document.removeEventListener('touchmove', resize);
+        document.removeEventListener('mouseup', stopResize);
+        document.removeEventListener('touchend', stopResize);
+    }
+}
+
+// Sidebar Navigation
+function initSidebar() {
     const sidebarItems = document.querySelectorAll('.sidebar-item');
-    sidebarItems.forEach((item, index) => {
+    
+    sidebarItems.forEach(item => {
         item.addEventListener('click', function() {
             // Remove active class from all items
             sidebarItems.forEach(i => i.classList.remove('active'));
-            // Add active class to clicked item
-            item.classList.add('active');
             
-            // Scroll to appropriate section
-            const sections = ['header', '#features', '#add', '#testimonials'];
-            if (index < sections.length) {
-                const section = document.querySelector(sections[index]);
-                if (section) {
-                    section.scrollIntoView({ behavior: 'smooth' });
-                }
+            // Add active class to clicked item
+            this.classList.add('active');
+            
+            // Get the text content to determine which section to scroll to
+            const itemText = this.textContent.trim().toLowerCase();
+            let targetSection;
+            
+            switch(itemText) {
+                case 'home':
+                    targetSection = document.querySelector('header');
+                    break;
+                case 'features':
+                    targetSection = document.querySelector('.card-section');
+                    break;
+                case 'add':
+                    targetSection = document.querySelector('.glass-section');
+                    break;
+                case 'about':
+                    targetSection = document.querySelector('.testimonial-section');
+                    break;
+                default:
+                    targetSection = document.querySelector('header');
+            }
+            
+            if (targetSection) {
+                const mainContent = document.querySelector('.main-content');
+                mainContent.scrollTo({
+                    top: targetSection.offsetTop - 20,
+                    behavior: 'smooth'
+                });
+            }
+        });
+        
+        // Add keyboard navigation
+        item.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                this.click();
             }
         });
     });
-});
+}
+
+// Testimonial Slider
+function initTestimonialSlider() {
+    const testimonials = document.querySelectorAll('.testimonial');
+    const dots = document.querySelectorAll('.dot');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+    let currentIndex = 0;
+    let autoplayInterval;
+    
+    // Function to show a specific testimonial
+    function showTestimonial(index) {
+        // Hide all testimonials
+        testimonials.forEach(testimonial => {
+            testimonial.classList.remove('active');
+            testimonial.style.display = 'none';
+        });
+        
+        // Remove active class from all dots
+        dots.forEach(dot => {
+            dot.classList.remove('active');
+        });
+        
+        // Show the selected testimonial
+        testimonials[index].classList.add('active');
+        testimonials[index].style.display = 'block';
+        
+        // Add active class to the corresponding dot
+        dots[index].classList.add('active');
+        
+        // Update current index
+        currentIndex = index;
+    }
+    
+    // Event listeners for dots
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            showTestimonial(index);
+            resetAutoplay();
+        });
+        
+        // Add keyboard navigation
+        dot.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                showTestimonial(index);
+                resetAutoplay();
+            }
+        });
+    });
+    
+    // Event listeners for prev/next buttons
+    prevBtn.addEventListener('click', () => {
+        let newIndex = currentIndex - 1;
+        if (newIndex < 0) newIndex = testimonials.length - 1;
+        showTestimonial(newIndex);
+        resetAutoplay();
+    });
+    
+    nextBtn.addEventListener('click', () => {
+        let newIndex = currentIndex + 1;
+        if (newIndex >= testimonials.length) newIndex = 0;
+        showTestimonial(newIndex);
+        resetAutoplay();
+    });
+    
+    // Function to start autoplay
+    function startAutoplay() {
+        autoplayInterval = setInterval(() => {
+            let newIndex = currentIndex + 1;
+            if (newIndex >= testimonials.length) newIndex = 0;
+            showTestimonial(newIndex);
+        }, 5000);
+    }
+    
+    // Function to reset autoplay
+    function resetAutoplay() {
+        clearInterval(autoplayInterval);
+        startAutoplay();
+    }
+    
+    // Initialize the slider
+    showTestimonial(0);
+    startAutoplay();
+    
+    // Pause autoplay when hovering over the slider
+    const sliderContainer = document.querySelector('.testimonial-slider');
+    sliderContainer.addEventListener('mouseenter', () => {
+        clearInterval(autoplayInterval);
+    });
+    
+    sliderContainer.addEventListener('mouseleave', () => {
+        startAutoplay();
+    });
+}
+
+// Smooth Scrolling
+function addSmoothScrolling() {
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                const mainContent = document.querySelector('.main-content');
+                mainContent.scrollTo({
+                    top: targetElement.offsetTop - 20,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+}
+
+// Add animations
+function addAnimations() {
+    // Animate feature cards on scroll
+    const featureCards = document.querySelectorAll('.feature-card');
+    const mainContent = document.querySelector('.main-content');
+    
+    mainContent.addEventListener('scroll', function() {
+        featureCards.forEach(card => {
+            const cardPosition = card.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+            
+            if (cardPosition < windowHeight * 0.85) {
+                card.classList.add('animate');
+            }
+        });
+    });
+    
+    // Add CSS for the animation
+    const style = document.createElement('style');
+    style.textContent = `
+        .feature-card {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .feature-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .feature-card:nth-child(1) {
+            transition-delay: 0.1s;
+        }
+        
+        .feature-card:nth-child(2) {
+            transition-delay: 0.3s;
+        }
+        
+        .feature-card:nth-child(3) {
+            transition-delay: 0.5s;
+        }
+        
+        .demo-message {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        .demo-content {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            max-width: 400px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .demo-content h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .demo-content p {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .demo-content button {
+            background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
+            color: var(--text-color);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        
+        .demo-content button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(114, 137, 218, 0.4);
+        }
+    `;
+    document.head.appendChild(style);
+    
+    // Trigger the scroll event to check for visible elements on load
+    setTimeout(() => {
+        mainContent.dispatchEvent(new Event('scroll'));
+    }, 300);
+}
