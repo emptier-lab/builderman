@@ -480,7 +480,5 @@ h2::after {
 
 /* Editing Style */
 .editing {
-    border: 2px dashed var(--primary-color) !important;
-    padding: 5px;
-    background-color: rgba(88, 101, 242, 0.1);
+    display: none; /* Hide any remaining editing styles */
 }
