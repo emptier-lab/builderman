@@ -14,42 +14,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize testimonial slider
     initTestimonialSlider();
     
-    // Make elements editable when clicked
-    document.body.addEventListener('click', function(event) {
-        // Check if the element is a heading, paragraph, or list item
-        if (['H1', 'H2', 'H3', 'P', 'LI'].includes(event.target.tagName)) {
-            makeEditable(event.target);
-        }
-    });
-
-    // Function to make an element editable
-    function makeEditable(element) {
-        // If already editable, don't do anything
-        if (element.isContentEditable) return;
-        
-        // Make the element editable
-        element.contentEditable = true;
-        element.focus();
-        
-        // Add a class to show it's being edited
-        element.classList.add('editing');
-        
-        // Save content when user clicks away
-        element.addEventListener('blur', function() {
-            element.contentEditable = false;
-            element.classList.remove('editing');
-            console.log('Edited: ' + element.textContent);
-        });
-        
-        // Save content when user presses Enter
-        element.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                element.blur();
-            }
-        });
-    }
-
     // Function to make the window draggable with improved functionality
     function makeDraggableImproved(handle, element) {
         let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
@@ -288,15 +252,4 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-    
-    // Add styling for editable elements
-    const style = document.createElement('style');
-    style.textContent = `
-        .editing {
-            border: 2px dashed #5865F2;
-            padding: 5px;
-            background-color: rgba(88, 101, 242, 0.1);
-        }
-    `;
-    document.head.appendChild(style);
 });
