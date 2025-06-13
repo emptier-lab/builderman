@@ -31,7 +31,7 @@ body {
     min-height: 100vh;
 }
 
-/* macOS Window Styling */
+
 .mac-window {
     width: 100%;
     height: 100vh;
@@ -267,7 +267,7 @@ body {
     border-radius: 4px;
 }
 
-/* Header Styling */
+
 header {
     text-align: center;
     padding: 5rem 2rem;
@@ -287,7 +287,7 @@ header::before {
     pointer-events: none;
 }
 
-/* Logo and Header Styling */
+
 .logo {
     font-size: 4rem;
     font-weight: 700;
@@ -380,7 +380,7 @@ header .divider {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* Section Styling */
+
 section {
     padding: 4rem 2rem;
     margin: 0 auto;
@@ -412,7 +412,7 @@ h2::after {
     border-radius: 3px;
 }
 
-/* Card Section */
+
 .card-section {
     background-color: #18191c;
     padding: 5rem 2rem;
@@ -498,7 +498,7 @@ h2::after {
     border: 2px solid rgba(114, 137, 218, 0.3);
 }
 
-/* Glass Section */
+
 .glass-section {
     padding: 5rem 2rem;
     position: relative;
@@ -592,7 +592,7 @@ h2::after {
     transform: scale(1.2);
 }
 
-/* Testimonial Section */
+
 .testimonial-section {
     padding: 5rem 2rem;
     background-color: rgba(0, 0, 0, 0.2);
@@ -847,7 +847,7 @@ h2::after {
     }
 }
 
-/* Window Resize Handle */
+
 .window-resize-handle {
     position: absolute;
     bottom: 0;
@@ -869,12 +869,12 @@ h2::after {
     border-bottom: 2px solid rgba(255, 255, 255, 0.4);
 }
 
-/* Editing Style */
+
 .editing {
-    display: none; /* Hide any remaining editing styles */
+    display: none; 
 }
 
-/* Changelog Gradients */
+
 .gradient-aliases {
     background: linear-gradient(135deg, #a18cd1, #fbc2eb);
 }
@@ -907,7 +907,7 @@ h2::after {
     background: linear-gradient(135deg, #30cfd0, #330867);
 }
 
-/* Content Section Styling */
+
 .content-section {
     max-width: 1200px;
     margin: 0 auto;
@@ -915,7 +915,7 @@ h2::after {
     width: 100%;
 }
 
-/* Changelog Specific Styles */
+
 .changelog-section {
     margin-bottom: 60px;
     border-radius: 16px;
@@ -1015,7 +1015,7 @@ h2::after {
     color: rgba(255, 255, 255, 0.9);
 }
 
-/* Gradient Backgrounds */
+
 .gradient-1 { background: linear-gradient(135deg, #ff6b6b, #6b5bff); }
 .gradient-2 { background: linear-gradient(135deg, #36d1dc, #5b86e5); }
 .gradient-3 { background: linear-gradient(135deg, #8e2de2, #4a00e0); }
@@ -1031,7 +1031,7 @@ h2::after {
 .gradient-guild { background: linear-gradient(135deg, #30cfd0, #330867); }
 .gradient-achievement { background: linear-gradient(135deg, #ff9a9e, #fad0c4); }
 
-/* Back Button */
+
 .back-button {
     display: inline-flex;
     align-items: center;
@@ -1054,7 +1054,7 @@ h2::after {
     margin-right: 8px;
 }
 
-/* Heading Styles */
+
 h1 {
     font-size: 3rem;
     margin-bottom: 1rem;
@@ -1078,3 +1078,4 @@ h1::after {
     color: var(--text-color);
     opacity: 0.9;
 }
+

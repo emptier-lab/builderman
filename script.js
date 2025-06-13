@@ -1,12 +1,12 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize all components
+
     initWindowControls();
     initSidebar();
     initTestimonialSlider();
     addSmoothScrolling();
     addAnimations();
     
-    // Add Discord redirect
+
     const discordButton = document.querySelector('.primary-button');
     if (discordButton) {
         discordButton.addEventListener('click', function(e) {
@@ -16,14 +16,14 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Window Controls
+
 function initWindowControls() {
-    // Disabled draggable functionality as requested
-    // makeDraggableImproved(document.querySelector('.window-titlebar'));
+
+
     
     makeResizable(document.querySelector('.mac-window'));
     
-    // Add window button functionality
+
     const closeButton = document.querySelector('.window-button.close');
     const minimizeButton = document.querySelector('.window-button.minimize');
     const maximizeButton = document.querySelector('.window-button.maximize');
@@ -34,7 +34,7 @@ function initWindowControls() {
         macWindow.style.opacity = '0';
         setTimeout(() => {
             macWindow.style.display = 'none';
-            // Show a message that this is just a demo
+
             const message = document.createElement('div');
             message.className = 'demo-message';
             message.innerHTML = `
@@ -63,7 +63,7 @@ function initWindowControls() {
         macWindow.style.opacity = '0';
         setTimeout(() => {
             macWindow.style.display = 'none';
-            // Show a message that this is just a demo
+
             const message = document.createElement('div');
             message.className = 'demo-message';
             message.innerHTML = `
@@ -101,13 +101,13 @@ function initWindowControls() {
     });
 }
 
-// Make an element draggable (improved version) - DISABLED
+
 function makeDraggableImproved(element) {
-    // Function disabled as requested
+
     return;
 }
 
-// Make an element resizable
+
 function makeResizable(element) {
     const resizeHandle = element.querySelector('.window-resize-handle');
     let isResizing = false;
@@ -171,19 +171,19 @@ function makeResizable(element) {
     }
 }
 
-// Sidebar Navigation
+
 function initSidebar() {
     const sidebarItems = document.querySelectorAll('.sidebar-item');
     
     sidebarItems.forEach(item => {
         item.addEventListener('click', function() {
-            // Remove active class from all items
+
             sidebarItems.forEach(i => i.classList.remove('active'));
             
-            // Add active class to clicked item
+
             this.classList.add('active');
             
-            // Get the text content to determine which section to scroll to
+
             const itemText = this.textContent.trim().toLowerCase();
             let targetSection;
             
@@ -213,7 +213,7 @@ function initSidebar() {
             }
         });
         
-        // Add keyboard navigation
+
         item.addEventListener('keydown', function(e) {
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
@@ -223,7 +223,7 @@ function initSidebar() {
     });
 }
 
-// Testimonial Slider
+
 function initTestimonialSlider() {
     const testimonials = document.querySelectorAll('.testimonial');
     const dots = document.querySelectorAll('.dot');
@@ -232,38 +232,38 @@ function initTestimonialSlider() {
     let currentIndex = 0;
     let autoplayInterval;
     
-    // Function to show a specific testimonial
+
     function showTestimonial(index) {
-        // Hide all testimonials
+
         testimonials.forEach(testimonial => {
             testimonial.classList.remove('active');
             testimonial.style.display = 'none';
         });
         
-        // Remove active class from all dots
+
         dots.forEach(dot => {
             dot.classList.remove('active');
         });
         
-        // Show the selected testimonial
+
         testimonials[index].classList.add('active');
         testimonials[index].style.display = 'block';
         
-        // Add active class to the corresponding dot
+
         dots[index].classList.add('active');
         
-        // Update current index
+
         currentIndex = index;
     }
     
-    // Event listeners for dots
+
     dots.forEach((dot, index) => {
         dot.addEventListener('click', () => {
             showTestimonial(index);
             resetAutoplay();
         });
         
-        // Add keyboard navigation
+
         dot.addEventListener('keydown', function(e) {
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
@@ -273,7 +273,7 @@ function initTestimonialSlider() {
         });
     });
     
-    // Event listeners for prev/next buttons
+
     prevBtn.addEventListener('click', () => {
         let newIndex = currentIndex - 1;
         if (newIndex < 0) newIndex = testimonials.length - 1;
@@ -288,7 +288,7 @@ function initTestimonialSlider() {
         resetAutoplay();
     });
     
-    // Function to start autoplay
+
     function startAutoplay() {
         autoplayInterval = setInterval(() => {
             let newIndex = currentIndex + 1;
@@ -297,17 +297,17 @@ function initTestimonialSlider() {
         }, 5000);
     }
     
-    // Function to reset autoplay
+
     function resetAutoplay() {
         clearInterval(autoplayInterval);
         startAutoplay();
     }
     
-    // Initialize the slider
+
     showTestimonial(0);
     startAutoplay();
     
-    // Pause autoplay when hovering over the slider
+
     const sliderContainer = document.querySelector('.testimonial-slider');
     sliderContainer.addEventListener('mouseenter', () => {
         clearInterval(autoplayInterval);
@@ -318,9 +318,9 @@ function initTestimonialSlider() {
     });
 }
 
-// Smooth Scrolling
+
 function addSmoothScrolling() {
-    // Smooth scroll for anchor links
+
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
@@ -340,9 +340,9 @@ function addSmoothScrolling() {
     });
 }
 
-// Add animations
+
 function addAnimations() {
-    // Animate feature cards on scroll
+
     const featureCards = document.querySelectorAll('.feature-card');
     const mainContent = document.querySelector('.main-content');
     
@@ -357,7 +357,7 @@ function addAnimations() {
         });
     });
     
-    // Add CSS for the animation
+
     const style = document.createElement('style');
     style.textContent = `
         .feature-card {
@@ -437,8 +437,9 @@ function addAnimations() {
     `;
     document.head.appendChild(style);
     
-    // Trigger the scroll event to check for visible elements on load
+
     setTimeout(() => {
         mainContent.dispatchEvent(new Event('scroll'));
     }, 300);
 }
+
