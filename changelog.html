@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incorp - Changelog</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sf': ['SF Pro Display', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        'glass': {
+                            50: 'rgba(255, 255, 255, 0.03)',
+                            100: 'rgba(255, 255, 255, 0.06)',
+                            200: 'rgba(255, 255, 255, 0.09)',
+                            300: 'rgba(255, 255, 255, 0.12)',
+                            400: 'rgba(255, 255, 255, 0.15)',
+                        },
+                        'apple': {
+                            'blue': '#007AFF',
+                            'purple': '#AF52DE',
+                            'gray': '#8E8E93',
+                            'teal': '#30D158',
+                            'orange': '#FF9F0A',
+                            'red': '#FF453A',
+                            'pink': '#FF2D92',
+                            'yellow': '#FFD60A',
+                            'mint': '#00C7BE',
+                            'cyan': '#64D2FF',
+                        }
+                    },
+                    backdropBlur: {
+                        'xs': '2px',
+                        'xs-plus': '4px',
+                        'sm-plus': '6px',
+                        'md-plus': '16px',
+                        'lg-plus': '32px',
+                        'xl-plus': '48px',
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'slide-up': 'slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'float': 'float 8s ease-in-out infinite',
+                        'glow': 'glow 3s ease-in-out infinite alternate',
+                        'spotlight': 'spotlight 2s ease 0.75s 1 forwards',
+                        'lens-in': 'lensIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'lens-out': 'lensOut 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'liquid-glass': 'liquidGlass 4s ease-in-out infinite',
+                        'shimmer': 'shimmer 2s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(30px) scale(0.95)' },
+                            '100%': { opacity: '1', transform: 'translateY(0) scale(1)' }
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(50px) rotateX(15deg)' },
+                            '100%': { opacity: '1', transform: 'translateY(0) rotateX(0deg)' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translate(0px, 0px) rotate(0deg)' },
+                            '33%': { transform: 'translate(20px, -20px) rotate(2deg)' },
+                            '66%': { transform: 'translate(-10px, 10px) rotate(-1deg)' }
+                        },
+                        glow: {
+                            '0%': { 
+                                boxShadow: '0 0 20px rgba(255, 255, 255, 0.2), 0 0 40px rgba(255, 255, 255, 0.1)',
+                                filter: 'brightness(1)'
+                            },
+                            '100%': { 
+                                boxShadow: '0 0 40px rgba(255, 255, 255, 0.3), 0 0 80px rgba(255, 255, 255, 0.15)',
+                                filter: 'brightness(1.1)'
+                            }
+                        },
+                        spotlight: {
+                            '0%': {
+                                opacity: '0',
+                                transform: 'translate(-72%, -62%) scale(0.5)',
+                            },
+                            '100%': {
+                                opacity: '1',
+                                transform: 'translate(-50%, -40%) scale(1)',
+                            }
+                        },
+                        lensIn: {
+                            '0%': { transform: 'scale(1) rotateX(0deg)', filter: 'brightness(1)' },
+                            '100%': { transform: 'scale(1.05) rotateX(5deg)', filter: 'brightness(1.1)' }
+                        },
+                        lensOut: {
+                            '0%': { transform: 'scale(1.05) rotateX(5deg)', filter: 'brightness(1.1)' },
+                            '100%': { transform: 'scale(1) rotateX(0deg)', filter: 'brightness(1)' }
+                        },
+                        liquidGlass: {
+                            '0%, 100%': { 
+                                background: 'rgba(255, 255, 255, 0.08)',
+                                borderColor: 'rgba(255, 255, 255, 0.2)'
+                            },
+                            '50%': { 
+                                background: 'rgba(255, 255, 255, 0.12)',
+                                borderColor: 'rgba(255, 255, 255, 0.3)'
+                            }
+                        },
+                        shimmer: {
+                            '0%': { transform: 'translateX(-200%)' },
+                            '100%': { transform: 'translateX(200%)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .liquid-glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 
+                0 8px 32px 0 rgba(0, 0, 0, 0.37),
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.25);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .liquid-glass:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 
+                0 20px 40px 0 rgba(0, 0, 0, 0.15),
+                0 0 60px 0 rgba(255, 255, 255, 0.15),
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.4);
+            transform: translateY(-8px) scale(1.02);
+        }
+        
+        .lens-effect {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .lens-effect::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: inherit;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+        
+        .lens-effect:hover::before {
+            opacity: 1;
+        }
+        
+        .spotlight-bg {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .spotlight {
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.03);
+            opacity: 0;
+            animation: spotlight 2s ease 0.75s forwards;
+            pointer-events: none;
+        }
+        
+        .icon-glow {
+            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3));
+            transition: all 0.3s ease;
+        }
+        
+        .icon-glow:hover {
+            filter: drop-shadow(0 0 16px rgba(255, 255, 255, 0.5));
+            transform: scale(1.1) rotate(3deg);
+        }
+        
+
+        
+        .frosted-glass {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(24px) saturate(150%);
+            -webkit-backdrop-filter: blur(24px) saturate(150%);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        
+        .version-card {
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+        
+        .version-card:hover {
+            transform: translateY(-12px) rotateX(8deg) scale(1.02);
+            box-shadow: 
+                0 32px 64px rgba(0, 0, 0, 0.2),
+                0 0 80px rgba(255, 255, 255, 0.2);
+        }
+        
+        .feature-item {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .feature-item:hover {
+            transform: translateX(8px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-black text-white font-sf antialiased overflow-x-hidden relative">
+    <!-- Spotlight Background -->
+    <div class="spotlight-bg fixed inset-0 pointer-events-none">
+        <div class="spotlight"></div>
+    </div>
+    
+    <!-- Navigation -->
+    <nav class="fixed top-10 inset-x-0 mx-auto z-50 max-w-fit liquid-glass lens-effect rounded-full px-8 py-6 animate-fade-in">
+        <div class="flex items-center justify-center space-x-4">
+            <span class="text-lg font-semibold text-white cursor-pointer">Incorp</span>
+            <div class="hidden md:flex space-x-4 text-sm font-medium">
+                <a href="index.html" class="text-gray-300 hover:text-white transition-all duration-300 cursor-pointer hover:opacity-90">Home</a>
+                <a href="index.html#features" class="text-gray-300 hover:text-white transition-all duration-300 cursor-pointer hover:opacity-90">Features</a>
+                <a href="#changelog" class="text-apple-blue cursor-pointer hover:opacity-90">Changelog</a>
+                <a href="index.html#stats" class="text-gray-300 hover:text-white transition-all duration-300 cursor-pointer hover:opacity-90">Stats</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center relative px-6">
+        <!-- Enhanced Background Elements -->
+        <div class="absolute inset-0 bg-gradient-to-br from-apple-blue/10 via-transparent to-apple-purple/10"></div>
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-apple-blue/8 to-apple-teal/8 rounded-full blur-3xl animate-float"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-r from-apple-purple/8 to-apple-pink/8 rounded-full blur-3xl animate-float" style="animation-delay: 2s;"></div>
+        <div class="absolute top-1/2 left-1/2 w-64 h-64 bg-gradient-to-r from-apple-orange/6 to-apple-yellow/6 rounded-full blur-2xl animate-float" style="animation-delay: 4s;"></div>
+        
+        <div class="text-center max-w-4xl mx-auto relative animate-fade-in">
+            <a href="index.html" class="inline-flex items-center text-gray-400 hover:text-apple-blue transition-all duration-300 mb-8 liquid-glass rounded-2xl px-4 py-2 text-sm lens-effect hover:scale-105">
+                <i class="fas fa-arrow-left mr-2"></i>Back to Home
+            </a>
+            
+            <div class="mb-8">
+                <h1 class="text-6xl md:text-7xl lg:text-8xl font-black tracking-tight mb-6">
+                    <span class="text-white">Changelog</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-light">
+                    Track all updates, new features, and improvements to the 
+                    <span class="text-apple-blue font-medium">Incorp bot</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Changelog Content -->
+    <section id="changelog" class="py-20 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-5 gap-8">
+                <!-- Enhanced Sidebar Navigation -->
+                <div class="lg:col-span-1">
+                    <div class="sticky top-8">
+                        <div class="liquid-glass rounded-3xl p-6 animate-slide-up lens-effect">
+                            <h3 class="text-lg font-semibold mb-4 text-white">Quick Navigation</h3>
+                            <nav class="space-y-2">
+                                <a href="#v3-0-1" class="block text-sm text-gray-400 hover:text-apple-blue transition-all duration-300 rounded-xl p-2 hover:bg-glass-200 feature-item">
+                                    <i class="fas fa-arrow-up text-apple-blue mr-2"></i>v3.0.1 - Upgrade System
+                                </a>
+                                <a href="#v3-0-0" class="block text-sm text-gray-400 hover:text-apple-purple transition-all duration-300 rounded-xl p-2 hover:bg-glass-200 feature-item">
+                                    <i class="fas fa-heart text-apple-purple mr-2"></i>v3.0.0 - Relationship Drama
+                                </a>
+                                <a href="#v2-3-0" class="block text-sm text-gray-400 hover:text-orange-400 transition-all duration-300 rounded-xl p-2 hover:bg-glass-200 feature-item">
+                                    <i class="fas fa-bomb text-orange-400 mr-2"></i>v2.3.0 - Bomb Squad
+                                </a>
+                                <a href="#v2-2-9" class="block text-sm text-gray-400 hover:text-indigo-400 transition-all duration-300 rounded-xl p-2 hover:bg-glass-200 feature-item">
+                                    <i class="fas fa-image text-indigo-400 mr-2"></i>v2.2.9 - Image Tools
+                                </a>
+                                <a href="#v2-2-6" class="block text-sm text-gray-400 hover:text-emerald-400 transition-all duration-300 rounded-xl p-2 hover:bg-glass-200 feature-item">
+                                    <i class="fas fa-chess-board text-emerald-400 mr-2"></i>v2.2.6 - Mines Game
+                                </a>
+                                <a href="#older" class="block text-sm text-gray-400 hover:text-gray-300 transition-all duration-300 rounded-xl p-2 hover:bg-glass-200 feature-item">
+                                    <i class="fas fa-history text-gray-300 mr-2"></i>Older Versions
+                                </a>
+                            </nav>
+                            
+                            <div class="mt-8 p-4 frosted-glass rounded-2xl border border-glass-300">
+                                <h4 class="font-semibold mb-3 text-white">Latest Stats</h4>
+                                <div class="space-y-3 text-sm">
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-gray-400">Current Version:</span>
+                                        <span class="text-apple-blue font-semibold">v3.0.1</span>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-gray-400">Total Commands:</span>
+                                        <span class="text-apple-purple font-semibold">100+</span>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-gray-400">Upgrade Types:</span>
+                                        <span class="text-emerald-400 font-semibold">7</span>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-gray-400">Games:</span>
+                                        <span class="text-orange-400 font-semibold">50+</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Enhanced Timeline Content -->
+                <div class="lg:col-span-4">
+                    <div class="space-y-8">
+                        <!-- Version 3.0.1 - Enhanced -->
+                        <div id="v3-0-1" class="version-card liquid-glass rounded-3xl p-8 animate-slide-up lens-effect" style="animation-delay: 0.1s;">
+                            <div class="flex items-center justify-between mb-6">
+                                <div class="flex items-center gap-4">
+                                                        <div class="w-16 h-16 bg-apple-blue rounded-2xl flex items-center justify-center animate-glow icon-glow">
+                        <i class="fas fa-arrow-up text-2xl text-white"></i>
+                    </div>
+                                    <div>
+                                        <h2 class="text-3xl font-bold text-white mb-2">Advanced Upgrade System</h2>
+                                        <div class="flex items-center gap-3">
+                                            <span class="bg-emerald-500/20 text-emerald-400 px-3 py-1 rounded-full text-sm font-medium border border-emerald-500/30">v3.0.1</span>
+                                            <span class="text-gray-400 text-sm">January 12, 2025</span>
+                                            <span class="bg-apple-blue/20 text-apple-blue px-3 py-1 rounded-full text-sm font-medium border border-apple-blue/30">Latest</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <p class="text-gray-300 mb-8 text-lg leading-relaxed">
+                                Major upgrade system implementation featuring 7 unique upgrades that enhance every aspect of gameplay from gambling to economy management.
+                            </p>
+                            
+                            <div class="grid md:grid-cols-2 gap-8">
+                                <div class="frosted-glass rounded-2xl p-6">
+                                    <h4 class="font-semibold mb-4 text-apple-blue flex items-center gap-2">
+                                        <i class="fas fa-dice icon-glow"></i> New Upgrades
+                                    </h4>
+                                    <div class="space-y-3">
+                                        <div class="feature-item p-2 rounded-xl">
+                                            <div class="flex items-center gap-3">
+                                            <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+                                            <span class="text-sm text-gray-300">Lucky Gambler - +12% gambling winnings</span>
+                                        </div>
+                                        </div>
+                                        <div class="feature-item p-2 rounded-xl">
+                                            <div class="flex items-center gap-3">
+                                            <div class="w-2 h-2 bg-blue-400 rounded-full"></div>
+                                            <span class="text-sm text-gray-300">Robbery Protection - -15% losses</span>
+                                        </div>
+                                        </div>
+                                        <div class="feature-item p-2 rounded-xl">
+                                            <div class="flex items-center gap-3">
+                                            <div class="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                                            <span class="text-sm text-gray-300">Bank Interest - 0.5% daily interest</span>
+                                        </div>
+                                        </div>
+                                        <div class="feature-item p-2 rounded-xl">
+                                            <div class="flex items-center gap-3">
+                                            <div class="w-2 h-2 bg-purple-400 rounded-full"></div>
+                                            <span class="text-sm text-gray-300">Energy Booster - -10% cooldowns</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                                <div class="frosted-glass rounded-2xl p-6">
+                                    <h4 class="font-semibold mb-4 text-apple-purple flex items-center gap-2">
+                                        <i class="fas fa-tools icon-glow"></i> System Improvements
+                                    </h4>
+                                    <div class="space-y-3">
+                                        <div class="feature-item p-2 rounded-xl">
+                                            <div class="flex items-center gap-3">
+                                            <div class="w-2 h-2 bg-orange-400 rounded-full"></div>
+                                            <span class="text-sm text-gray-300">Security Vault - 20% theft protection</span>
+                                        </div>
+                                        </div>
+                                        <div class="feature-item p-2 rounded-xl">
+                                            <div class="flex items-center gap-3">
+                                            <div class="w-2 h-2 bg-indigo-400 rounded-full"></div>
+                                            <span class="text-sm text-gray-300">Business License - Enhanced features</span>
+                                        </div>
+                                        </div>
+                                        <div class="feature-item p-2 rounded-xl">
+                                            <div class="flex items-center gap-3">
+                                            <div class="w-2 h-2 bg-emerald-400 rounded-full"></div>
+                                            <span class="text-sm text-gray-300">XP Multiplier - +15% XP gains</span>
+                                        </div>
+                                        </div>
+                                        <div class="feature-item p-2 rounded-xl">
+                                            <div class="flex items-center gap-3">
+                                            <div class="w-2 h-2 bg-gray-400 rounded-full"></div>
+                                            <span class="text-sm text-gray-300">Enhanced error handling</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Version 3.0.0 -->
+                        <div id="v3-0-0" class="version-card liquid-glass rounded-3xl p-8 animate-slide-up lens-effect" style="animation-delay: 0.2s;">
+                            <div class="flex items-center justify-between mb-6">
+                                <div class="flex items-center gap-4">
+                                                        <div class="w-16 h-16 bg-pink-500 rounded-2xl flex items-center justify-center icon-glow">
+                        <i class="fas fa-heart text-2xl text-white"></i>
+                    </div>
+                                    <div>
+                                        <h2 class="text-3xl font-bold text-white mb-2">Relationship Drama & Upgrades</h2>
+                                        <div class="flex items-center gap-3">
+                                            <span class="bg-pink-500/20 text-pink-400 px-3 py-1 rounded-full text-sm font-medium border border-pink-500/30">v3.0.0</span>
+                                            <span class="text-gray-400 text-sm">January 12, 2025</span>
+                                            <span class="bg-red-500/20 text-red-400 px-3 py-1 rounded-full text-sm font-medium border border-red-500/30">Major</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <p class="text-gray-300 mb-6 text-lg leading-relaxed">
+                                Introduced relationship drama system with cheating mechanics and investigation features, plus major upgrade system improvements.
+                            </p>
+                            
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="frosted-glass rounded-2xl p-6">
+                                    <h4 class="font-semibold mb-4 text-pink-400 flex items-center gap-2">
+                                        <i class="fas fa-heart icon-glow"></i> Social Features
+                                    </h4>
+                                    <div class="space-y-2">
+                                        <div class="feature-item p-2 rounded-xl">
+                                            <div class="flex items-center gap-3">
+                                            <div class="w-2 h-2 bg-pink-400 rounded-full"></div>
+                                            <span class="text-sm text-gray-300">Kiss Command - Romantic interactions</span>
+                                        </div>
+                                        </div>
+                                        <div class="feature-item p-2 rounded-xl">
+                                            <div class="flex items-center gap-3">
+                                            <div class="w-2 h-2 bg-red-400 rounded-full"></div>
+                                            <span class="text-sm text-gray-300">Cheat Command - Secret affairs</span>
+                                        </div>
+                                        </div>
+                                        <div class="feature-item p-2 rounded-xl">
+                                            <div class="flex items-center gap-3">
+                                            <div class="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                                            <span class="text-sm text-gray-300">Catch Cheating - Investigation system</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                                <div class="frosted-glass rounded-2xl p-6">
+                                    <h4 class="font-semibold mb-4 text-red-400 flex items-center gap-2">
+                                        <i class="fas fa-cog icon-glow"></i> Technical Updates
+                                    </h4>
+                                    <div class="space-y-2">
+                                        <div class="feature-item p-2 rounded-xl">
+                                            <div class="flex items-center gap-3">
+                                            <div class="w-2 h-2 bg-blue-400 rounded-full"></div>
+                                            <span class="text-sm text-gray-300">Complete upgrade system overhaul</span>
+                                        </div>
+                                        </div>
+                                        <div class="feature-item p-2 rounded-xl">
+                                            <div class="flex items-center gap-3">
+                                            <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+                                            <span class="text-sm text-gray-300">Anti-crash protection</span>
+                                        </div>
+                                        </div>
+                                        <div class="feature-item p-2 rounded-xl">
+                                            <div class="flex items-center gap-3">
+                                            <div class="w-2 h-2 bg-purple-400 rounded-full"></div>
+                                            <span class="text-sm text-gray-300">Improved cooldown stacking</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Version 2.3.0 -->
+                        <div id="v2-3-0" class="version-card liquid-glass rounded-3xl p-6 animate-slide-up lens-effect" style="animation-delay: 0.3s;">
+                            <div class="flex items-center gap-4 mb-4">
+                                                    <div class="w-12 h-12 bg-orange-500 rounded-xl flex items-center justify-center icon-glow">
+                        <i class="fas fa-bomb text-2xl text-white"></i>
+                    </div>
+                                <div>
+                                    <h3 class="text-2xl font-bold text-white">Bomb Squad Game</h3>
+                                    <div class="flex items-center gap-3">
+                                        <span class="bg-orange-500/20 text-orange-400 px-2 py-1 rounded-full text-xs font-medium">v2.3.0</span>
+                                        <span class="text-gray-400 text-xs">Dec 15, 2024</span>
+                                        <span class="bg-red-500/20 text-red-400 px-2 py-1 rounded-full text-xs font-medium">Gaming</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-gray-300 mb-4 leading-relaxed">Thrilling Bomb Squad defusal game with high-stakes risk-reward mechanics.</p>
+                            <div class="space-y-2">
+                                <div class="feature-item flex items-center gap-2 text-sm text-gray-300">
+                                    <div class="w-1.5 h-1.5 bg-red-400 rounded-full"></div>
+                                    <span>Bomb defusal mini-game</span>
+                                </div>
+                                <div class="feature-item flex items-center gap-2 text-sm text-gray-300">
+                                    <div class="w-1.5 h-1.5 bg-green-400 rounded-full"></div>
+                                    <span>New .diffuser command</span>
+                                </div>
+                                <div class="feature-item flex items-center gap-2 text-sm text-gray-300">
+                                    <div class="w-1.5 h-1.5 bg-blue-400 rounded-full"></div>
+                                    <span>Enhanced risk mechanics</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Compact Version Grid -->
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <!-- Version 2.2.9 -->
+                            <div id="v2-2-9" class="version-card liquid-glass rounded-3xl p-6 animate-slide-up lens-effect" style="animation-delay: 0.4s;">
+                                <div class="flex items-center gap-4 mb-4">
+                                                        <div class="w-12 h-12 bg-indigo-500 rounded-xl flex items-center justify-center icon-glow">
+                        <i class="fas fa-image text-2xl text-white"></i>
+                    </div>
+                                    <div>
+                                        <h3 class="text-xl font-bold text-white">Image Tools</h3>
+                                        <div class="flex items-center gap-2">
+                                            <span class="bg-indigo-500/20 text-indigo-400 px-2 py-1 rounded-full text-xs font-medium">v2.2.9</span>
+                                            <span class="text-gray-400 text-xs">Dec 1, 2024</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-gray-300 mb-3 text-sm">Image manipulation suite with filters and effects.</p>
+                                <div class="grid grid-cols-2 gap-2 text-xs">
+                                    <div class="feature-item flex items-center gap-1">
+                                        <div class="w-1 h-1 bg-blue-400 rounded-full"></div>
+                                        <span class="text-gray-400">Bandicam effect</span>
+                                    </div>
+                                    <div class="feature-item flex items-center gap-1">
+                                        <div class="w-1 h-1 bg-yellow-400 rounded-full"></div>
+                                        <span class="text-gray-400">Sepia filter</span>
+                                    </div>
+                                    <div class="feature-item flex items-center gap-1">
+                                        <div class="w-1 h-1 bg-green-400 rounded-full"></div>
+                                        <span class="text-gray-400">Sharpening</span>
+                                    </div>
+                                    <div class="feature-item flex items-center gap-1">
+                                        <div class="w-1 h-1 bg-purple-400 rounded-full"></div>
+                                        <span class="text-gray-400">Distortions</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Version 2.2.6 -->
+                            <div id="v2-2-6" class="version-card liquid-glass rounded-3xl p-6 animate-slide-up lens-effect" style="animation-delay: 0.5s;">
+                                <div class="flex items-center gap-4 mb-4">
+                                                        <div class="w-12 h-12 bg-emerald-500 rounded-xl flex items-center justify-center icon-glow">
+                        <i class="fas fa-chess-board text-2xl text-white"></i>
+                    </div>
+                                    <div>
+                                        <h3 class="text-xl font-bold text-white">Mines Game</h3>
+                                        <div class="flex items-center gap-2">
+                                            <span class="bg-emerald-500/20 text-emerald-400 px-2 py-1 rounded-full text-xs font-medium">v2.2.6</span>
+                                            <span class="text-gray-400 text-xs">Nov 15, 2024</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-gray-300 mb-3 text-sm">Strategic mines gambling with grid-based gameplay.</p>
+                                <div class="space-y-1 text-xs">
+                                    <div class="feature-item flex items-center gap-2">
+                                        <div class="w-1 h-1 bg-emerald-400 rounded-full"></div>
+                                        <span class="text-gray-400">Strategic gameplay</span>
+                                    </div>
+                                    <div class="feature-item flex items-center gap-2">
+                                        <div class="w-1 h-1 bg-blue-400 rounded-full"></div>
+                                        <span class="text-gray-400">Multiple commands</span>
+                                    </div>
+                                    <div class="feature-item flex items-center gap-2">
+                                        <div class="w-1 h-1 bg-yellow-400 rounded-full"></div>
+                                        <span class="text-gray-400">High-risk rewards</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Previous Versions Summary -->
+                        <div id="older" class="version-card liquid-glass rounded-3xl p-8 animate-slide-up lens-effect" style="animation-delay: 0.6s;">
+                            <div class="flex items-center gap-4 mb-6">
+                                                <div class="w-16 h-16 bg-gray-500 rounded-2xl flex items-center justify-center icon-glow">
+                    <i class="fas fa-history text-2xl text-white"></i>
+                </div>
+                                <div>
+                                    <h2 class="text-3xl font-bold text-white mb-2">Previous Versions</h2>
+                                    <p class="text-gray-400">Rich development history with major features</p>
+                                </div>
+                            </div>
+                            
+                            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                                <!-- Version 2.2.5 - Ladders -->
+                                <div class="frosted-glass rounded-2xl p-4 lens-effect hover:scale-105 transition-all duration-300">
+                                    <div class="flex items-center gap-2 mb-3">
+                                        <i class="fas fa-ladder text-yellow-400 icon-glow"></i>
+                                        <h4 class="font-semibold text-white">v2.2.5 - Ladders Game</h4>
+                                    </div>
+                                    <p class="text-sm text-gray-400 mb-2">Multiplayer ladder climbing with progressive difficulty</p>
+                                    <div class="text-xs text-gray-500 space-y-1">
+                                        <div class="feature-item">• .ladders command</div>
+                                        <div class="feature-item">• Up to 4 players</div>
+                                        <div class="feature-item">• Progressive rewards</div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Version 2.2.4 - Plinko -->
+                                <div class="frosted-glass rounded-2xl p-4 lens-effect hover:scale-105 transition-all duration-300">
+                                    <div class="flex items-center gap-2 mb-3">
+                                        <i class="fas fa-circle text-orange-400 icon-glow"></i>
+                                        <h4 class="font-semibold text-white">v2.2.4 - Plinko Game</h4>
+                                    </div>
+                                    <p class="text-sm text-gray-400 mb-2">Animated ASCII Plinko with varying payouts</p>
+                                    <div class="text-xs text-gray-500 space-y-1">
+                                        <div class="feature-item">• .plinko command</div>
+                                        <div class="feature-item">• Risk-based rewards</div>
+                                        <div class="feature-item">• ASCII visualization</div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Version 2.2.3 - Home Market -->
+                                <div class="frosted-glass rounded-2xl p-4 lens-effect hover:scale-105 transition-all duration-300">
+                                    <div class="flex items-center gap-2 mb-3">
+                                        <i class="fas fa-home text-green-400 icon-glow"></i>
+                                        <h4 class="font-semibold text-white">v2.2.3 - Home Market</h4>
+                                    </div>
+                                    <p class="text-sm text-gray-400 mb-2">Property system with homes and bills</p>
+                                    <div class="text-xs text-gray-500 space-y-1">
+                                        <div class="feature-item">• .homes, .buyhome commands</div>
+                                        <div class="feature-item">• Food system</div>
+                                        <div class="feature-item">• Guest management</div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Version 2.2.2 - Bank Robbery -->
+                                <div class="frosted-glass rounded-2xl p-4 lens-effect hover:scale-105 transition-all duration-300">
+                                    <div class="flex items-center gap-2 mb-3">
+                                        <i class="fas fa-mask text-red-400 icon-glow"></i>
+                                        <h4 class="font-semibold text-white">v2.2.2 - Bank Robbery</h4>
+                                    </div>
+                                    <p class="text-sm text-gray-400 mb-2">High-stakes heist mechanics</p>
+                                    <div class="text-xs text-gray-500 space-y-1">
+                                        <div class="feature-item">• .robbank command</div>
+                                        <div class="feature-item">• Risk-reward system</div>
+                                        <div class="feature-item">• Security upgrades</div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Version 2.2.1 - Potions -->
+                                <div class="frosted-glass rounded-2xl p-4 lens-effect hover:scale-105 transition-all duration-300">
+                                    <div class="flex items-center gap-2 mb-3">
+                                        <i class="fas fa-flask text-purple-400 icon-glow"></i>
+                                        <h4 class="font-semibold text-white">v2.2.1 - Luck Potions</h4>
+                                    </div>
+                                    <p class="text-sm text-gray-400 mb-2">Dynamic pricing for luck potions</p>
+                                    <div class="text-xs text-gray-500 space-y-1">
+                                        <div class="feature-item">• Infinite Luck Potion</div>
+                                        <div class="feature-item">• Price tracking system</div>
+                                        <div class="feature-item">• Enhanced gambling</div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Version 2.1.9 - Relationships -->
+                                <div class="frosted-glass rounded-2xl p-4 lens-effect hover:scale-105 transition-all duration-300">
+                                    <div class="flex items-center gap-2 mb-3">
+                                        <i class="fas fa-ring text-pink-400 icon-glow"></i>
+                                        <h4 class="font-semibold text-white">v2.1.9 - Relationships</h4>
+                                    </div>
+                                    <p class="text-sm text-gray-400 mb-2">Marriage and family systems</p>
+                                    <div class="text-xs text-gray-500 space-y-1">
+                                        <div class="feature-item">• Marriage & divorce</div>
+                                        <div class="feature-item">• Social commands</div>
+                                        <div class="feature-item">• Family features</div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Version 2.1.8 - Guilds -->
+                                <div class="frosted-glass rounded-2xl p-4 lens-effect hover:scale-105 transition-all duration-300">
+                                    <div class="flex items-center gap-2 mb-3">
+                                        <i class="fas fa-shield text-blue-400 icon-glow"></i>
+                                        <h4 class="font-semibold text-white">v2.1.8 - Guild System</h4>
+                                    </div>
+                                    <p class="text-sm text-gray-400 mb-2">Guilds, events, and trading</p>
+                                    <div class="text-xs text-gray-500 space-y-1">
+                                        <div class="feature-item">• Guild creation</div>
+                                        <div class="feature-item">• Seasonal events</div>
+                                        <div class="feature-item">• Cross-server trading</div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Version 2.1.7 - Achievements -->
+                                <div class="frosted-glass rounded-2xl p-4 lens-effect hover:scale-105 transition-all duration-300">
+                                    <div class="flex items-center gap-2 mb-3">
+                                        <i class="fas fa-trophy text-yellow-400 icon-glow"></i>
+                                        <h4 class="font-semibold text-white">v2.1.7 - Achievements</h4>
+                                    </div>
+                                    <p class="text-sm text-gray-400 mb-2">Achievement system and arena battles</p>
+                                    <div class="text-xs text-gray-500 space-y-1">
+                                        <div class="feature-item">• Achievement tracking</div>
+                                        <div class="feature-item">• Enhanced arena</div>
+                                        <div class="feature-item">• Performance optimization</div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Version 2.2.8 - Code Definition -->
+                                <div class="frosted-glass rounded-2xl p-4 lens-effect hover:scale-105 transition-all duration-300">
+                                    <div class="flex items-center gap-2 mb-3">
+                                        <i class="fas fa-code text-cyan-400 icon-glow"></i>
+                                        <h4 class="font-semibold text-white">v2.2.8 - Code Tools</h4>
+                                    </div>
+                                    <p class="text-sm text-gray-400 mb-2">Code definition and documentation</p>
+                                    <div class="text-xs text-gray-500 space-y-1">
+                                        <div class="feature-item">• .define command</div>
+                                        <div class="feature-item">• Code explanations</div>
+                                        <div class="feature-item">• Developer tools</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Footer -->
+    <footer class="py-16 px-6 border-t border-gray-800/50">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="flex items-center justify-center space-x-3 mb-6">
+                <span class="text-xl font-semibold text-white">Incorp</span>
+            </div>
+            <p class="text-gray-400 mb-8 max-w-md mx-auto">
+                The Discord economy and entertainment bot for modern communities
+            </p>
+            
+            <div class="flex justify-center space-x-6 mb-8">
+                <a href="#" class="text-gray-400 hover:text-white transition-all duration-300 text-xl icon-glow">
+                    <i class="fab fa-discord"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-white transition-all duration-300 text-xl icon-glow">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="index.html" class="text-gray-400 hover:text-white transition-all duration-300 text-xl icon-glow">
+                    <i class="fas fa-home"></i>
+                </a>
+            </div>
+            
+            <div class="text-sm text-gray-500">
+                © 2025 Incorp Bot. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Enhanced smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Enhanced navbar effects
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('nav');
+            const scrolled = window.pageYOffset;
+            
+            if (scrolled > 100) {
+                navbar.style.background = 'rgba(0, 0, 0, 0.8)';
+                navbar.style.backdropFilter = 'blur(32px) saturate(180%)';
+                navbar.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+            } else {
+                navbar.style.background = 'linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)';
+                navbar.style.backdropFilter = 'blur(20px) saturate(180%)';
+                navbar.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+            }
+        });
+
+        // Enhanced section highlighting
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('[id^="v"], #older');
+            const navLinks = document.querySelectorAll('nav a[href^="#"]');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 200;
+                const sectionBottom = sectionTop + section.offsetHeight;
+                if (window.scrollY >= sectionTop && window.scrollY < sectionBottom) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                const href = link.getAttribute('href').substring(1);
+                link.classList.remove('text-apple-blue', 'text-apple-purple', 'text-orange-400', 'text-indigo-400', 'text-emerald-400', 'text-gray-300');
+                
+                if (href === current) {
+                    if (href === 'v3-0-1') link.classList.add('text-apple-blue');
+                    else if (href === 'v3-0-0') link.classList.add('text-apple-purple');
+                    else if (href === 'v2-3-0') link.classList.add('text-orange-400');
+                    else if (href === 'v2-2-9') link.classList.add('text-indigo-400');
+                    else if (href === 'v2-2-6') link.classList.add('text-emerald-400');
+                    else link.classList.add('text-gray-300');
+                    
+                    link.style.background = 'rgba(255, 255, 255, 0.1)';
+                    link.style.transform = 'scale(1.05)';
+                } else {
+                    link.classList.add('text-gray-400');
+                    link.style.background = 'transparent';
+                    link.style.transform = 'scale(1)';
+                }
+            });
+        });
+
+        // Intersection Observer for enhanced animations
+        const observeElements = document.querySelectorAll('.version-card, .liquid-glass');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                    entry.target.classList.add('animate-lens-in');
+                } else {
+                    entry.target.classList.remove('animate-lens-in');
+                    entry.target.classList.add('animate-lens-out');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        observeElements.forEach(el => {
+            observer.observe(el);
+        });
+
+        // Parallax effect for background elements
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('[class*="animate-float"]');
+            
+            parallaxElements.forEach((element, index) => {
+                const speed = 0.3 + (index * 0.1);
+                const yPos = -(scrolled * speed);
+                element.style.transform = `translate3d(0, ${yPos}px, 0)`;
+            });
+            });
+            
+        // Enhanced lens effect on mouse move
+        document.querySelectorAll('.lens-effect').forEach(card => {
+            card.addEventListener('mousemove', function(e) {
+                const rect = this.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 20;
+                const rotateY = (centerX - x) / 20;
+                
+                this.style.transform = `translateY(-12px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) rotateX(0deg) rotateY(0deg) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
